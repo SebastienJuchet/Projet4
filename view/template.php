@@ -7,7 +7,6 @@
         <link rel="stylesheet" href="public\css\style.css">
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-        
         <script defer src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" integrity="sha384-ujbKXb9V3HdK7jcWL6kHL1c+2Lj4MR4Gkjl7UtwpSHg/ClpViddK9TI7yU53frPN" crossorigin="anonymous"></script>  
         <title><?php $title; ?></title>
     </head>
@@ -53,11 +52,17 @@
                 <img src="public/img/montagne-neige.jpg" alt="...">
             </div>
         </div>
+        <div class="container-fluid">
+            <div class="row">
+                <p id="description" class="text-center font-weight-bold">Bienvenue sur mon blog où vous pourrez découvrir mon dernier livre. <br>
+                Ce livre je l'écrirai avec vous, se serais à l'écoute de vos commentaires pour l'inventer avec vous. <br>
+                Tous les chapitres seront accessible sur se blog.</p>
+            </div>
+        </div>
         
     </div>
-    <p class="presentation">Bienvenue sur mon blog que j'ai créé pour vous faire découvrir mon tous dernier livre. <br>
-        Ce livre je l'écrirai avec vous, avec vos ressentis. Je serais à l'écoute de vos commentaires pour le faire avec vous. <br>
-        Tous les chapitres seront accessible sur se blog.</p>
+    
+    <?= $slider ?? ''; ?>
 
     <?= $content ?? ''; ?>
 
@@ -82,5 +87,8 @@
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        <script src="public/js/slider.js"></script>
+        <script src="public/js/apps.js"></script>
+
     </body>
 </html>

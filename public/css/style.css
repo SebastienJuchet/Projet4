@@ -1,5 +1,6 @@
 #slider{
-    margin-top: 8rem;
+    padding-top: 8rem;
+    background-color: rgb(254, 239, 206);
 }
 
 .slider-inner{
@@ -9,16 +10,24 @@
 }
 
 .slide-item{
-    width: 80%;
+    width: 0;
     position: absolute;
-    left: -3000px;
+    left: 10%;
+    transform: rotate(-180deg);
+    transition: all 0.5s ease-in-out ;
 }
 .active {
-    left: 10%;
+    width: 80%;
+    transform: rotate(0deg);
 }
 
 img {
     display: block;
     max-width: 100%;
     height: auto;
+}
+
+#description{
+    width: 100%;
+    font-size: 1.8rem;
 }
