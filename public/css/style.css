@@ -1,4 +1,8 @@
-#slider{
+nav li:hover {
+    color: #ffffff;
+}
+
+#slider {
     padding-top: 8rem;
     background-color: rgb(254, 239, 206);
 }
@@ -27,7 +31,19 @@ img {
     height: auto;
 }
 
-#description{
+#description {
     width: 100%;
     font-size: 1.8rem;
+}
+
+h1 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #2b4161;
+    text-decoration: underline;
+}
+
+.block_chapitres {
+    padding: 2% 0;
+    margin: 2% 0;
+    border: #2b4161 thick double ;
 }

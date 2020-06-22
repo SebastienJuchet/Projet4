@@ -16,8 +16,8 @@ class Slider {
     }
 
     initiAutoSlide() {
-        setInterval( () => {
-            this.nextPicture();
-        }, 4000);
+            setInterval( () => {
+                this.nextPicture();
+            }, 4000);        
     }
 }
