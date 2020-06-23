@@ -53,9 +53,9 @@
                     <ul class="list-inline text-center ">
                         <li class="list-inline-item h5"><a href="" class="text-white"> À propos</a></li>
                         <li class="list-inline-item">&middot;</li>
-                        <li class="list-inline-item h5"><a href="" class="text-white"> C.G.U</a></li>
+                        <li class="list-inline-item h5"><a href="mentions_legales.html" class="text-white"> Mentions Légales</a></li>
                         <li class="list-inline-item">&middot;</li>
-                        <li class="list-inline-item h5"><a href="" class="text-white"> &#0169 Fait par Sébastien Juchet pour OCR</a></li>
+                        <li class="list-inline-item h5">&#0169 Fait par Sébastien Juchet pour OCR</li>
                     </ul>
                 </div>
                 

@@ -4,7 +4,7 @@ nav li:hover {
 
 #slider {
     padding-top: 8rem;
-    background-color: rgb(254, 239, 206);
+    background-color: #ffffff;
 }
 
 .slider-inner{
@@ -14,15 +14,14 @@ nav li:hover {
 }
 
 .slide-item{
-    width: 0;
+    width: 80%;
     position: absolute;
     left: 10%;
-    transform: rotate(-180deg);
-    transition: all 0.5s ease-in-out ;
+    transform: rotate3d(0,1,0,90deg);
+    transition: all 1s ease-in-out ;
 }
 .active {
-    width: 80%;
-    transform: rotate(0deg);
+    transform: rotate3d(0,1,0,0deg);
 }
 
 img {
@@ -31,18 +30,20 @@ img {
     height: auto;
 }
 
+/* page liste post et post avec commentaires */
+
 #description {
     width: 100%;
     font-size: 1.8rem;
 }
 
-h1 {
+h2 {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: #2b4161;
     text-decoration: underline;
 }
 
-.block_chapitres {
+#block_chapitres {
     padding: 2% 0;
     margin: 2% 0;
     border: #2b4161 thick double ;
