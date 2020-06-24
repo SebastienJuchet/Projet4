@@ -1,5 +1,5 @@
 <?php 
-require 'model/ConnexionDb.php';
+require_once 'model/ConnexionDb.php';
 
 class PostManager extends ConnexionDb
 {

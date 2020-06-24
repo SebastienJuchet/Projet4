@@ -1,5 +1,4 @@
 <?php ob_start(); ?>
-<?php  ?>
 
 <div class="container mt-5 pt-5 text-center">
     <div class="row">
@@ -25,15 +24,45 @@
         
         <div class="col pt-3 pb-3 text-left" id="post-content">
             <?= htmlspecialchars($post['content']) ?>
-        </div>
-        <div class="container">
-            <div class="row d-flex justify-content-end">
-                
-            </div>
-        </div>
-        
+        </div>        
     </div>
 </div>
+
+<?php while ($comment = $comments->fetch()): ?>
+<div class="container mt-3" id>
+    <div class="row" id="block-comment-post">
+        <div class="col mt-3 mb-3" >
+            <?= $comment['author'] ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p class="text-left"><?= $comment['comment'] ?></p>
+        </div>
+    </div>
+</div>
+<?php endwhile; ?>
+<div class="container mb-3 mt-3" id="separate-form">
+    <div class="row mt-3">
+        <div class="col-6">
+            <form action="index.php?action=post&amp;id=<?= $_GET['id'] ?>" method="POST">
+                <div class="form-group">
+                    <label for="author">Votre pseudo</label>
+                    <input name="author" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="form-group">
+                    <label for="comment">Example textarea</label>
+                    <textarea name="comment" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-dark">Envoyer</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
 
 <?php $content = ob_get_clean();?>
 <?php require 'template.php';

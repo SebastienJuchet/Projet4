@@ -1,6 +1,6 @@
 <?php ob_start(); ?>
 
-<div id="slider">
+<div id="slider" class="mt-5">
     <div class="slider-inner">
         <div class="slide-item active">
             <img src="public/img/aurore-lac.jpg" alt="...">

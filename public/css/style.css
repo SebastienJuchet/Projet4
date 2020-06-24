@@ -2,11 +2,6 @@ nav li:hover {
     color: #ffffff;
 }
 
-#slider {
-    padding-top: 8rem;
-    background-color: #ffffff;
-}
-
 .slider-inner{
     position: relative;
     width: 100%;
@@ -17,7 +12,7 @@ nav li:hover {
     width: 80%;
     position: absolute;
     left: 10%;
-    transform: rotate3d(0,1,0,90deg);
+    transform: rotate3d(1,0,0,90deg);
     transition: all 1s ease-in-out ;
 }
 .active {
@@ -47,4 +42,8 @@ h2 {
     padding: 2% 0;
     margin: 2% 0;
     border: #2b4161 thick double ;
+}
+
+#block-comment-post, #separate-form {
+    border-top: 2px solid #343a40;
 }

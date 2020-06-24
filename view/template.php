@@ -17,10 +17,10 @@
     <body>
 
     <header>
-        <nav class="navbar navbar-expand-lg fixed-top mb-3 navbar-dark bg-dark ">
+        <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark ">
             <div class="container-fluid d-flex justify-content-end">
                 <a class="navbar-brand p-2 bd-highlight" href="index.php">
-                <i class="fas fa-home"></i> Billet simple pour l'Alaska
+                    <i class="fas fa-home"></i>
                 </a>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,12 +41,22 @@
         </nav>
     </header> 
 
+    <?php if (isset($slider) && $slider !== ''): ?>
+        <div class="container mt-3">
+            <div class="row">
+                <div class="col text-center">
+                    <h1 class="mb-3">Jean Forteroche vous présente:</h1>
+                    <h2>"Billet simple pour l'Alaska"</h2>
+                </div>
+            </div>
+        </div>        
+    <?php endif; ?>
+
     <?= $slider ?? "" ?>
 
-    <?= $content ?? '' ?>
+    <?= $content ?? "" ?>
 
-
-    <footer class="d-flex align-items-center bg-dark pt-5 pb-5 text-white">
+    <footer class="sticky-bottom d-flex align-items-center bg-dark pt-5 pb-5 text-white">
         <div class="container">
             <div class="row">
                 <div class="col">

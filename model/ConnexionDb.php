@@ -1,25 +1,47 @@
 <?php
 abstract class ConnexionDb 
 {
-    CONST HOST = 'localhost';
-    CONST DB_NAME = 'blog_forteroche';
-    CONST USER_NAME = 'root';
-    CONST PASS = '';
-
-    private $_connexion;
+    /**
+     * @var string
+     */
+    private CONST HOST = 'localhost';
 
     /**
-     * Connexion data base 
+     * @var string
      */
-    private function getConnection() 
+    private CONST DB_NAME = 'blog_forteroche';
+
+    /**
+     * @var string
+     */
+    private CONST USER_NAME = 'root';
+
+    /**
+     * @var string
+     */
+    private CONST PASS = '';
+
+    /**
+     * @var PDO
+     */
+    protected $connexion;
+
+
+    /**
+     * @return PDO
+     */
+    private function getConnection(): PDO 
     {
-        $this->_connexion = null;
+        if($this->connexion) {
+            return $this->connexion;
+        }
 
         try {
-            $this->_connexion = new PDO("mysql:host=" . self::HOST .";dbname=" . self::DB_NAME . ';charset=utf8', self::USER_NAME, self::PASS);
-            $this->_connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            
+            $this->connexion = new PDO("mysql:host=" . self::HOST .";dbname=" . self::DB_NAME . ';charset=utf8', self::USER_NAME, self::PASS);
+            $this->connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            return $this->_connexion;
+            return $this->connexion;
         }
         catch (Exception $errorConnection) {
             die('Erreur : ' . $errorConnection->getMessage());
@@ -27,13 +49,13 @@ abstract class ConnexionDb
         
     }
     /**
-     * create connexion request
+     * Undocumented function
      *
-     * @param [string] $sql
-     * @param [string] $params
-     * @return connection query or prepare
+     * @param string $sql
+     * @param array|null $params
+     * @return PDOStatement
      */
-    protected function createRequest($sql, $params = null) 
+    protected function createRequest(string $sql, ?array $params = null): PDOStatement 
     {
         if ($params) {
             $result = $this->getConnection()->prepare($sql);
