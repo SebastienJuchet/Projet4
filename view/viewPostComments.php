@@ -1,4 +1,10 @@
+<?php session_start(); ?>
 <?php ob_start(); ?>
+<?php if (!isset($_SESSION['author'])) {
+    $_SESSION['author'] = htmlspecialchars($_POST['author']);
+ } 
+ ?>
+
 
 <div class="container mt-5 pt-5 text-center">
     <div class="row">
@@ -42,16 +48,17 @@
     </div>
 </div>
 <?php endwhile; ?>
+
 <div class="container mb-3 mt-3" id="separate-form">
     <div class="row mt-3">
         <div class="col-6">
-            <form action="index.php?action=post&amp;id=<?= $_GET['id'] ?>" method="POST">
+            <form action="index.php?action=addComment&amp;id=<?= $_GET['id'] ?>" method="POST">
                 <div class="form-group">
-                    <label for="author">Votre pseudo</label>
-                    <input name="author" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <label for="author" id="author">Votre pseudo</label>
+                    <input name="author" type="text" class="form-control" aria-describedby="emailHelp" value="<?= $_SESSION['author']?>">
                 </div>
                 <div class="form-group">
-                    <label for="comment">Example textarea</label>
+                    <label for="comment" id="comment" class="primary">Votre commentaire</label>
                     <textarea name="comment" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                 </div>
                 
@@ -60,8 +67,6 @@
         </div>
     </div>
 </div>
-
-
 
 
 <?php $content = ob_get_clean();?>

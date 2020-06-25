@@ -28,3 +28,17 @@ function showPost(int $postId) {
 
     require 'view/viewPostComments.php';
 }
+
+function createComments(int $postId, string $author, string $com,int $reportComment) {
+    $commentManager = new CommentManager();
+    $comment = $commentManager->newComment($postId, $author, $com, $reportComment);
+
+    header('Location: index.php?action=post&id='.$postId );
+}
+
+function delComment($idComment) {    
+
+    $commentManager = new CommentManager();
+    $req = $commentManager->deleteComment($idComment);
+
+}

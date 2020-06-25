@@ -47,3 +47,7 @@ h2 {
 #block-comment-post, #separate-form {
     border-top: 2px solid #343a40;
 }
+
+form #author, #comment {
+    font-weight: bold;
+}

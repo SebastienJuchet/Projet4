@@ -9,5 +9,12 @@ if (isset($_GET['action'])) {
         listPosts();
     } elseif ($_GET['action'] === 'post' && isset($_GET['id']) && $_GET['id'] > 0) {
         showPost((int) $_GET['id']);
-    }
+    } elseif ($_GET['action'] === 'addComment') {
+        $postId = $_GET['id'];
+        $author = htmlspecialchars($_POST['author']);
+        $comment = htmlspecialchars($_POST['comment']);
+        $reportComment = false;
+
+        createComments($postId, $author, $comment, $reportComment);
+    } 
 } 
