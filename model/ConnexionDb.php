@@ -49,8 +49,6 @@ abstract class ConnexionDb
         
     }
     /**
-     * Undocumented function
-     *
      * @param string $sql
      * @param array|null $params
      * @return PDOStatement

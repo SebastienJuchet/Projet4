@@ -24,7 +24,5 @@
     </div>
 </div>
 
-
-
 <?php $slider = ob_get_clean(); ?>
 <?php require 'template.php'; ?>

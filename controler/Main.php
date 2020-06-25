@@ -2,29 +2,29 @@
 require_once 'model/PostManager.php';
 require_once 'model/CommentManager.php';
 
+/**
+ * @return void
+ */
 function listPosts() {
     $posts = new PostManager();
     $listPosts = $posts->getPosts();
 
     require 'view/viewListPosts.php';
 }
+
 /**
- * function show post and comments
- *
- * @param [int] $postId id of post
- * @return 
+ * @param integer $postId
  */
-function postComments(int $postId) {
+function showPost(int $postId) {
     $postManager = new PostManager();
     $req = $postManager->getPost($postId);
 
     $post = $req->fetch();
+
     if ($post) {
         $commentManager = new CommentManager();
         $comments = $commentManager->getComments($postId);
     }
 
-
     require 'view/viewPostComments.php';
-    
 }

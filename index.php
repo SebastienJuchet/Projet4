@@ -8,6 +8,6 @@ if (isset($_GET['action'])) {
     if ($_GET['action'] === 'listeChapitres') {
         listPosts();
     } elseif ($_GET['action'] === 'post' && isset($_GET['id']) && $_GET['id'] > 0) {
-        postComments((int) $_GET['id']);
+        showPost((int) $_GET['id']);
     }
 } 
