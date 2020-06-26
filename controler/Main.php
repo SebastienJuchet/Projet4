@@ -30,10 +30,15 @@ function showPost(int $postId) {
 }
 
 function createComments(int $postId, string $author, string $com,int $reportComment) {
-    $commentManager = new CommentManager();
-    $comment = $commentManager->newComment($postId, $author, $com, $reportComment);
-
-    header('Location: index.php?action=post&id='.$postId );
+    
+    
+    if ($author !== "" && $com !== "") {
+        $commentManager = new CommentManager();
+        $comment = $commentManager->newComment($postId, $author, $com, $reportComment);
+        header('Location: index.php?action=post&id='.$postId );
+    } else {
+        echo 'les champs ne sont pas remplis';
+    }
 }
 
 function delComment($idComment) {    

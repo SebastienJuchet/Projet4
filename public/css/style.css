@@ -25,6 +25,12 @@ img {
     height: auto;
 }
 
+#image-modal img{
+    width: 200px;
+    height: auto;
+    border-radius: 50%;
+}
+
 /* page liste post et post avec commentaires */
 
 #description {

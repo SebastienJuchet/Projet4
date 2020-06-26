@@ -1,10 +1,4 @@
-<?php session_start(); ?>
 <?php ob_start(); ?>
-<?php if (!isset($_SESSION['author'])) {
-    $_SESSION['author'] = htmlspecialchars($_POST['author']);
- } 
- ?>
-
 
 <div class="container mt-5 pt-5 text-center">
     <div class="row">
@@ -54,20 +48,19 @@
         <div class="col-6">
             <form action="index.php?action=addComment&amp;id=<?= $_GET['id'] ?>" method="POST">
                 <div class="form-group">
-                    <label for="author" id="author">Votre pseudo</label>
-                    <input name="author" type="text" class="form-control" aria-describedby="emailHelp" value="<?= $_SESSION['author']?>">
-                </div>
-                <div class="form-group">
-                    <label for="comment" id="comment" class="primary">Votre commentaire</label>
-                    <textarea name="comment" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <label for="author">Votre pseudo</label>
+                    <input id="author" name="author" type="text" class="form-control" value="<?= @$_SESSION['author'];?>" >
                 </div>
                 
-                <button type="submit" class="btn btn-dark">Envoyer</button>
+                <div class="form-group">
+                    <label for="comment" id="comment" class="primary">Votre commentaire</label>
+                    <textarea name="comment" class="form-control" rows="3" ></textarea>
+                </div>
+                
+                <button id="submit" type="submit" class="btn btn-dark">Envoyer</button>
             </form>
         </div>
     </div>
 </div>
-
-
 <?php $content = ob_get_clean();?>
 <?php require 'template.php'; ?>

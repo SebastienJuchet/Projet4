@@ -22,7 +22,7 @@ class CommentManager extends ConnexionDb
      */
     public function newComment(int $postId, string $author, string $comment, int $reportComment): PDOStatement {
         $request = 'INSERT INTO comments (id_post, author, comment, report_comment, creation_date) VALUES (:id_post, :author, :comment, :report_comment, NOW())';
-
+        
         return $this->createRequest($request, [
             ':id_post' => $postId,
             ':author' => $author,
