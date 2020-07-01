@@ -4,12 +4,24 @@ require_once 'model/ConnexionDb.php';
 class PostManager extends ConnexionDb
 {
     /**
+     * @var int
+     */
+    public CONST DEFAULT_SIZE = 10;
+
+    /**
      * function pdo query
      * @return PDOStatement
      */
-    public function getPosts(): PDOStatement
+    public function getPosts($currentPage): PDOStatement
     {
-        $request = 'SELECT id, title, content, DATE_FORMAT(date_creation, \'%d-%m-%Y à %hH:%mMin\') AS date_creation_fr FROM post ORDER BY date_creation DESC';
+        $first = ($currentPage * self::DEFAULT_SIZE) - self::DEFAULT_SIZE;
+        $request = 'SELECT id, title, content, DATE_FORMAT(date_creation, \'%d-%m-%Y à %hH:%mMin\') AS date_creation_fr FROM post ORDER BY date_creation DESC LIMIT '. $first . ', ' . self::DEFAULT_SIZE;
+
+        return $this->createRequest($request);
+    }
+
+    public function postCount():PDOStatement {
+        $request = 'SELECT COUNT(*) FROM post';
         return $this->createRequest($request);
     }
 

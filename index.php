@@ -6,10 +6,10 @@ try {
         require_once 'view/slider.php';
     } 
     if (isset($_GET['action'])) {
-        if ($_GET['action'] === 'listeChapitres') {
-            listPosts();
-        } elseif ($_GET['action'] === 'post' && isset($_GET['id']) && $_GET['id'] > 0) {
-            showPost((int) $_GET['id']);
+        if ($_GET['action'] === 'listeChapitres' && isset($_GET['page']) && $_GET['page'] > 0) {
+            listPosts((int) strip_tags($_GET['page']));
+        } elseif ($_GET['action'] === 'post' && isset($_GET['id']) && $_GET['id'] > 0 && isset($_GET['pageComment']) && $_GET['pageComment'] > 0) {
+            showPost((int) $_GET['id'],(int) $_GET['pageComment']);
         } elseif ($_GET['action'] === 'addComment') {
             $postId = $_GET['id'];
             $author = htmlspecialchars($_POST['author']);

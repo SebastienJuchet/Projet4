@@ -3,13 +3,13 @@
 <div class="container mt-5 pt-5 text-center">
     <div class="row">
         <div class="col-12 pt-3 text-left">
-            <a href="index.php?action=listeChapitres" class="return">Retour à la liste des chapitres</a>
+            <a href="index.php?action=listeChapitres&amp;page=1" class="return">Retour à la liste des chapitres</a>
         </div>
     </div>
     <div class="row">
         <div class="col pt-3 pb-3">
-            <h2>
-                <?= strtoupper(htmlspecialchars($post['title'])); ?>
+            <h2 class="title_post">
+                <?= htmlspecialchars($post['title']); ?>
             </h2>
         </div>
     </div>
@@ -42,6 +42,31 @@
     </div>
 </div>
 <?php endwhile; ?>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <nav>
+                <ul class="pagination">
+                    <li class="page-item <?= ($currentPage === 1) ? "disabled" : "" ?>">
+                        <a href="index.php?action=post&amp;id=<?= $_GET['id'] ?>&amp;pageComment=<?= $currentPage - 1 ?>" class="page-link">Précédent</a>
+                    </li>
+
+                <?php for($page = 1; $page <= $nbPages; $page++): ?>
+
+                    <li class="page-item <?= ($currentPage == $page) ? "active" : "" ?>">
+                        <a href="index.php?action=post&amp;id=<?= $_GET['id'] ?>&amp;pageComment=<?= $page ?>" class="page-link"><?= $page; ?></a>
+                    </li>
+
+                <?php endfor ?>
+                    <li class="page-item <?= ($currentPage == $nbPages) ? "disabled" : "" ?>">
+                        <a href="index.php?action=post&amp;id=<?= $_GET['id'] ?>&amp;pageComment=<?= $currentPage + 1 ?>" class="page-link">Suivant</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
 
 <div class="container mb-3 mt-3" id="separate-form">
     <div class="row mt-3">

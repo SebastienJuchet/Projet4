@@ -32,7 +32,7 @@
                             <a class="nav-link" href="index.php">Accueil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php?action=listeChapitres">Chapitres</a>
+                            <a class="nav-link" href="index.php?action=listeChapitres&amp;page=1">Chapitres</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#foo" data-toggle="modal" data-target="#staticBackdrop"> À propos</a>

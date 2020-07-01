@@ -27,13 +27,37 @@
         <div class="container">
             <div class="row d-flex justify-content-end">
                 <div class="col-4 d-flex justify-content-end">
-                    <a href="index.php?action=post&amp;id=<?= $listPost['id'];?>" class="btn btn-dark">Lire</a>
+                    <a href="index.php?action=post&amp;id=<?= $listPost['id'] ?>&amp;pageComment=1" class="btn btn-dark">Lire</a>
                 </div>
             </div>
         </div>
-        
     </div>
 </div>
-<?php endwhile ?>
+<?php endwhile; ?>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <nav>
+                <ul class="pagination">
+                    <li class="page-item <?= ($currentPage === 1) ? "disabled" : "" ?>">
+                        <a href="index.php?action=listeChapitres&amp;page=<?= $currentPage - 1 ?>" class="page-link">Précédent</a>
+                    </li>
+
+                <?php for($page = 1; $page <= $nbPages; $page++): ?>
+
+                    <li class="page-item <?= ($currentPage === $page) ? "active" : "" ?>">
+                        <a href="index.php?action=listeChapitres&amp;page=<?= $page ?>" class="page-link"><?= $page; ?></a>
+                    </li>
+
+                <?php endfor ?>
+                <li class="page-item <?= ($currentPage == $nbPages) ? "disabled" : "" ?>">
+                        <a href="index.php?action=listeChapitres&amp;page=<?= $currentPage + 1 ?>" class="page-link">Suivant</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
 <?php $content = ob_get_clean();?>
 <?php require 'template.php';

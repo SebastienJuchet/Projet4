@@ -44,6 +44,10 @@ h2 {
     text-decoration: underline;
 }
 
+.title_post {
+    text-transform: uppercase;
+}
+
 #block_chapitres {
     padding: 2% 0;
     margin: 2% 0;
