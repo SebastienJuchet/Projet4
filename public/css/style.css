@@ -58,6 +58,30 @@ h2 {
     border-top: 2px solid #343a40;
 }
 
+.comment-infos span {
+    font-weight: bold;
+}
+#btn-report {
+    position: relative;
+}
+
+.report {
+    display: none;
+    width: 6rem;
+    border-radius: 5px;
+    color: #000000;
+    background-color: rgba(255, 199, 46, 0.35);
+    font-size: 1rem;
+}
+
+#btn-report:hover span.report {
+    display: block;
+    position: absolute;
+    top: -2rem;
+    left: calc(50% - 3rem);
+    z-index: 10000;
+}
+
 form #author, #comment {
     font-weight: bold;
 }

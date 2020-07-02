@@ -27,17 +27,55 @@
         </div>        
     </div>
 </div>
-
 <?php while ($comment = $comments->fetch()): ?>
 <div class="container mt-3" id>
-    <div class="row" id="block-comment-post">
+    <div class="row d-flex justify-content-around" id="block-comment-post">
         <div class="col mt-3 mb-3" >
-            <?= $comment['author'] ?>
+           <p class="comment-infos"><span>Poster le : </span><?= $comment['creation_date_fr'] ?><br> 
+           <span>Par : </span><?= $comment['author'] ?></p>
+        </div>
+        <div class="col mt-3 mb-3 text-right">
+            <?= ($comment['report_comment'] == 1) ? "Message signalé" : "" ?>
         </div>
     </div>
     <div class="row">
-        <div class="col">
-            <p class="text-left"><?= $comment['comment'] ?></p>
+        <div class="col-11 text-left">
+            <?= $comment['comment'] ?>
+        </div>
+        <div class="col-1 text-center">
+            <button id="btn-report" class="btn btn-dark mt-3 mt-sm-0" <?= ($comment['report_comment'] == 1) ? "disabled" : " " ?> data-toggle="modal" data-target="#modalForm<?= $comment['id'] ?>">
+                <span>&hellip;</span>
+                <span class="report"><?= ($comment['report_comment'] == 1) ? "" : "Signaler" ?></span>
+            </button>
+        </div> 
+    </div>
+</div>
+<div class="modal" id="modalForm<?= $comment['id'] ?>" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title" id="exampleModalLabel">Signaler le message :</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body"> 
+                <form id="modalForm" action="index.php?action=reportComment&amp;id_message=<?= $comment['id'] ?>" method="post">
+                    <label for="signalement">Motif</label>
+                    <select class="custom-select custom-select-sm" name="signalement">dqsd
+                        <option value="violent">Violent</option>
+                        <option value="haineux">Discours haineux</option>
+                        <option value="sexiste">Sexiste</option>
+                        <option value="contenu indesirable">Contenu indesirable</option>
+                        <option value="autre">Autre chose</option>
+                    </select>
+                    <div class="row mt-5">
+                        <div class="col">
+                            <button type="submit" class="btn btn-primary">Signaler</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
@@ -73,12 +111,12 @@
         <div class="col-6">
             <form action="index.php?action=addComment&amp;id=<?= $_GET['id'] ?>" method="POST">
                 <div class="form-group">
-                    <label for="author">Votre pseudo</label>
-                    <input id="author" name="author" type="text" class="form-control" value="<?= @$_SESSION['author'];?>" >
+                    <label for="author" id="author">Votre pseudo :</label>
+                    <input name="author" type="text" class="form-control" value="<?= @$_SESSION['author'];?>" >
                 </div>
                 
                 <div class="form-group">
-                    <label for="comment" id="comment" class="primary">Votre commentaire</label>
+                    <label for="comment" id="comment" class="primary">Votre commentaire :</label>
                     <textarea name="comment" class="form-control" rows="3" ></textarea>
                 </div>
                 

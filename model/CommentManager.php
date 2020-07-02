@@ -61,4 +61,30 @@ class CommentManager extends ConnexionDb
             ':id' => $idComment
         ]);
     }
+
+    /**
+     * @param integer $idComment
+     * @return PDOStatement
+     */
+    public function updateReportComment(int $idComment):PDOStatement {
+        $request = 'UPDATE comments SET report_comment = 1 WHERE id = ?';
+
+        return $this->createRequest($request, [$idComment]);
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param integer $idMessageReport
+     * @param string $typeReport
+     * @return PDOStatement
+     */
+    public function reportComment(int $idMessageReport, string $typeReport):PDOStatement {
+        $request = 'INSERT INTO report_type_comment (id_message_report, type_report, date_report) VALUES (:id_message_report, :type_report, NOW())';
+
+        return $this->createRequest($request, [
+            ':id_message_report' => $idMessageReport,
+            ':type_report' => $typeReport
+        ]);
+    }
 }

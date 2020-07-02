@@ -50,3 +50,11 @@ function delComment($idComment) {
     $commentManager = new CommentManager();
     $req = $commentManager->deleteComment($idComment);
 }
+
+function reportComments($idComment, $typeReport) {
+    $commentManager = new CommentManager();
+    $reportComment = $commentManager->updateReportComment($idComment);
+
+    $reportCommentAdmin = $commentManager->reportComment($idComment, $typeReport);
+    header('Location: index.php?action=listeChapitres&page=1');
+}
