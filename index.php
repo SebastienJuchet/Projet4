@@ -1,8 +1,9 @@
 <?php 
 require 'controler/Main.php';
 session_start();
+var_dump($_SERVER); die;
 try {
-    if(empty($_GET)) {
+      if(empty($_GET)) {
         require_once 'view/slider.php';
     } 
     if (isset($_GET['action'])) {

@@ -85,3 +85,9 @@ h2 {
 form #author, #comment {
     font-weight: bold;
 }
+
+/*Page admin*/
+
+#form-connexion {
+    margin-top: 15rem;
+}
