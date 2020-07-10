@@ -1,10 +1,10 @@
 <?php 
 require 'controler/Main.php';
 session_start();
-var_dump($_SERVER); die;
+
 try {
-      if(empty($_GET)) {
-        require_once 'view/slider.php';
+    if(empty($_GET)) {
+    require_once 'view/slider.php';
     } 
     if (isset($_GET['action'])) {
         if ($_GET['action'] === 'listeChapitres' && isset($_GET['page']) && $_GET['page'] > 0) {
@@ -23,9 +23,13 @@ try {
             if (!empty($author) && !empty($comment)) {
                 createComments($postId, $author, $comment, $reportComment);
             } else {
-                throw new Exception('Vous n\'avez pas remplis les champs demandés!!!');
+                throw new Exception('Vous n\'avez pas remplis les champs demandés !!!');
             }           
-        } 
+        } if (empty($_GET['action'])) {
+            throw new Exception('La page n\'existe pas');
+        }
+    } else {
+        throw new Exception('L\'action n\'existe pas');
     } 
 }
 

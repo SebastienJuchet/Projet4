@@ -20,6 +20,9 @@ class PostManager extends ConnexionDb
         return $this->createRequest($request);
     }
 
+    /**
+     * @return PDOStatement
+     */
     public function postCount():PDOStatement {
         $request = 'SELECT COUNT(*) FROM post';
         return $this->createRequest($request);

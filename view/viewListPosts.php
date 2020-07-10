@@ -34,6 +34,8 @@
     </div>
 </div>
 <?php endwhile; ?>
+
+<?php if ($nbPages > 1): ?>
 <div class="container">
     <div class="row">
         <div class="col">
@@ -58,6 +60,7 @@
         </div>
     </div>
 </div>
+<?php endif ?>
 
 <?php $content = ob_get_clean();?>
 <?php require 'template.php';

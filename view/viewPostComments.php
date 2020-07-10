@@ -81,6 +81,7 @@
 </div>
 <?php endwhile; ?>
 
+<?php if ($nbPages > 1): ?>
 <div class="container">
     <div class="row">
         <div class="col">
@@ -105,6 +106,7 @@
         </div>
     </div>
 </div>
+<?php endif ?>
 
 <div class="container mb-3 mt-3" id="separate-form">
     <div class="row mt-3">
