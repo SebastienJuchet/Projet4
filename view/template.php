@@ -15,6 +15,7 @@
         <title>Billet simple pour l'Alaska</title>
     </head>
     <body>
+    <?php if (!isset($_SESSION['admin'])): ?>
     <header>
         <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark ">
             <div class="container-fluid d-flex justify-content-end">
@@ -42,7 +43,7 @@
             </div>
         </nav>
     </header> 
-
+    <?php endif ?>
     <?php if (isset($slider) && $slider !== ''): ?>
         <div class="container mt-3">
             <div class="row">

@@ -3,15 +3,14 @@ require_once 'model/PostManager.php';
 require_once 'model/CommentManager.php';
 
 /**
- * @return void
+ * @param integer $currentPage
  */
-function listPosts($currentPage) {
+function listPosts(int $currentPage) {
     $posts = new PostManager();
     $listPosts = $posts->getPosts($currentPage);
     $postPage = $posts->postCount()->fetchColumn();
 
     $nbPages = ceil($postPage / PostManager::DEFAULT_SIZE);
-
     require 'view/viewListPosts.php';    
 }
 
@@ -35,6 +34,13 @@ function showPost(int $postId,int $currentPage) {
     require 'view/viewPostComments.php';
 }
 
+/**
+ * @param integer $postId
+ * @param string $author
+ * @param string $com
+ * @param integer $reportComment
+ * @return void
+ */
 function createComments(int $postId, string $author, string $com,int $reportComment) {
     
     if ($author !== "" && $com !== "") {
@@ -46,12 +52,12 @@ function createComments(int $postId, string $author, string $com,int $reportComm
     }
 }
 
-function delComment($idComment) {    
-    $commentManager = new CommentManager();
-    $req = $commentManager->deleteComment($idComment);
-}
-
-function reportComments($idComment, $typeReport) {
+/**
+ * @param integer $idComment
+ * @param string $typeReport
+ * @return void
+ */
+function reportComments(int $idComment, string $typeReport) {
     $commentManager = new CommentManager();
     $reportComment = $commentManager->updateReportComment($idComment);
 

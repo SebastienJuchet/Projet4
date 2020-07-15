@@ -35,7 +35,13 @@
            <span>Par : </span><?= $comment['author'] ?></p>
         </div>
         <div class="col mt-3 mb-3 text-right">
-            <?= ($comment['report_comment'] == 1) ? "Message signalé" : "" ?>
+            <?php if ($comment['report_comment'] == 1) {
+                echo "Message signalé";
+            }  elseif ($comment['report_comment'] == 2) {
+                echo 'Message autoriser par l\'administateur';
+            } else {
+                echo '';
+            } ?>
         </div>
     </div>
     <div class="row">
@@ -43,9 +49,15 @@
             <?= $comment['comment'] ?>
         </div>
         <div class="col-1 text-center">
-            <button id="btn-report" class="btn btn-dark mt-3 mt-sm-0" <?= ($comment['report_comment'] == 1) ? "disabled" : " " ?> data-toggle="modal" data-target="#modalForm<?= $comment['id'] ?>">
+            <button id="btn-report" class="btn btn-dark mt-3 mt-sm-0" 
+            <?php if ($comment['report_comment'] == 1 || $comment['report_comment'] == 2) {
+                echo 'disabled';
+            } else {
+                echo '';
+            } ?>
+             data-toggle="modal" data-target="#modalForm<?= $comment['id'] ?>">
                 <span>&hellip;</span>
-                <span class="report"><?= ($comment['report_comment'] == 1) ? "" : "Signaler" ?></span>
+                <span class="report"><?= ($comment['report_comment'] == 0) ? "Signaler" : "" ?></span>
             </button>
         </div> 
     </div>

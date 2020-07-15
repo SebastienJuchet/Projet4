@@ -17,38 +17,44 @@
 
 <body>
 <?php if(isset($_SESSION['admin'])): ?>
-    <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark ">
-        <div class="container-fluid">
-            <a class="navbar-brand bd-highlight" href="index.php">
-                <i class="fas fa-home"></i>
-            </a>
+    <header>
+        <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand bd-highlight" href="admin-login?dashboard">
+                    <i class="fas fa-home"></i>
+                </a>
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-            <div class="collapse navbar-collapse bd-highlight" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item ">
-                        <a class="nav-link" href="admin-login?dashboard">Accueil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php?action=listeChapitres&amp;page=1">Gestion des chapitres</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#foo" data-toggle="modal" data-target="#staticBackdrop">Gestion commentaires</a>
-                    </li>
-                </ul>
+                <div class="collapse navbar-collapse bd-highlight" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="admin-login?dashboard">Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="admin-login?action=gestionChapitres&amp;page=1">Gestion des chapitres</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="admin-login?action=gestionCommentaires&amp;page=1">Gestion commentaires 
+                                <?php if ($_SESSION['nb_comments'] > 0): ?>
+                                    <span class="text-white"><?= $_SESSION['nb_comments'] ?></span>
+                                <?php endif ?>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="nav justify-content-end pr-5 bg-dark">
+                    <span class="navbar-text bd-highlight">Bonjour <?= ucfirst($_SESSION['admin']) ?></span>
+                </div>
+                <div class="nav justify-content-end bg-dark">
+                    <a class="navbar-brand bd-highlight" href="admin-login?dashboard=deconnexion">Deconnexion</a>
+                </div>
             </div>
-            
-            <div class="nav justify-content-end pr-5 bg-dark">
-            <span class="navbar-text bd-highlight">Bonjour <?= ucfirst($_SESSION['admin']) ?></span>
-            </div>
-            <div class="nav justify-content-end bg-dark">
-                <a class="navbar-brand bd-highlight" href="admin-login?dashboard=deconnexion">Deconnexion</a>
-            </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
     <?php endif ?>
     <?= $formAdminConnexion ?? "" ?>
     <?= !empty($_SESSION['admin']) ? @$content : "" ?>

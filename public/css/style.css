@@ -91,3 +91,23 @@ form #author, #comment {
 #form-connexion {
     margin-top: 15rem;
 }
+
+span.type-report {
+    color: red;
+}
+
+li.validate-comment, li.delete-comment {
+    list-style: none;
+}
+
+li.delete-comment::before {
+    content: "X";
+    color: red;
+    font-weight: bold;
+}
+
+li.validate-comment::before {
+    content: "V";
+    color: green;
+    font-weight: bold;
+}

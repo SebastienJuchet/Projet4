@@ -73,8 +73,6 @@ class CommentManager extends ConnexionDb
     }
 
     /**
-     * Undocumented function
-     *
      * @param integer $idMessageReport
      * @param string $typeReport
      * @return PDOStatement
@@ -85,6 +83,58 @@ class CommentManager extends ConnexionDb
         return $this->createRequest($request, [
             ':id_message_report' => $idMessageReport,
             ':type_report' => $typeReport
+        ]);
+    }
+
+    /**
+     * @return PDOStatement
+     */
+    public function listReportComment(int $currentPage):PDOStatement {
+        $first = ($currentPage * self::DEFAULT_SIZE) - self::DEFAULT_SIZE;
+
+        $request = 'SELECT type_report, DATE_FORMAT(date_report, \'%d-%m-%Y à %hH:%mMin\') AS date_report_fr, author, comment, id
+                    FROM report_type_comment 
+                    LEFT JOIN comments ON id_message_report = comments.id 
+                    WHERE report_comment = 1
+                    ORDER BY date_report DESC LIMIT ' .$first . ',' . self::DEFAULT_SIZE;
+
+        return $this->createRequest($request);
+    }
+
+    /**
+     * @param integer $idMessageReport
+     * @return PDOStatement
+     */
+    public function deleteCommentReport(int $idMessageReport):PDOStatement {
+        $request = 'DELETE FROM report_type_comment WHERE id_message_report = :id_message_report';
+        
+        return $this->createRequest($request, [
+            ':id_message_report' => $idMessageReport
+        ]);
+    }
+
+    /**
+     * @return PDOStatement
+     */
+    public function countReportComment():PDOStatement {
+        $request = 'SELECT COUNT(*) FROM report_type_comment ORDER BY date_report DESC';
+
+        return $this->createRequest($request);
+    }
+
+    public function deleteTableReport($idComment):PDOStatement {
+        $request = 'DELETE FROM report_type_comment WHERE id_message_report = :id_message_report';
+        
+        return $this->createRequest($request, [
+            ':id_message_report' => $idComment
+        ]);
+    }
+
+    public function commentReportAuthorized($idComment) {
+        $request = 'UPDATE comments SET report_comment = 2 WHERE id = :id';
+
+        return $this->createRequest($request, [
+            ':id' => $idComment
         ]);
     }
 }
