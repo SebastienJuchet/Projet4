@@ -6,7 +6,7 @@ class PostManager extends ConnexionDb
     /**
      * @var int
      */
-    public CONST DEFAULT_SIZE = 10;
+    public CONST DEFAULT_SIZE = 5;
 
     /**
      * function pdo query
@@ -23,7 +23,8 @@ class PostManager extends ConnexionDb
     /**
      * @return PDOStatement
      */
-    public function postCount():PDOStatement {
+    public function postCount():PDOStatement 
+    {
         $request = 'SELECT COUNT(*) FROM post';
         return $this->createRequest($request);
     }
@@ -33,7 +34,8 @@ class PostManager extends ConnexionDb
      * @param integer $postId
      * @return PDOStatement
      */
-    public function getPost(int $postId): PDOStatement {
+    public function getPost(int $postId): PDOStatement 
+    {
         $request = 'SELECT id, title, content, DATE_FORMAT(date_creation, \'%d-%m-%Y à %hH:%mMin\') AS date_creation_fr FROM post WHERE id = ?';
         return $this->createRequest($request, [$postId]);
     }

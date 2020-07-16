@@ -66,7 +66,8 @@ class CommentManager extends ConnexionDb
      * @param integer $idComment
      * @return PDOStatement
      */
-    public function updateReportComment(int $idComment):PDOStatement {
+    public function updateReportComment(int $idComment):PDOStatement 
+    {
         $request = 'UPDATE comments SET report_comment = 1 WHERE id = ?';
 
         return $this->createRequest($request, [$idComment]);
@@ -77,7 +78,8 @@ class CommentManager extends ConnexionDb
      * @param string $typeReport
      * @return PDOStatement
      */
-    public function reportComment(int $idMessageReport, string $typeReport):PDOStatement {
+    public function reportComment(int $idMessageReport, string $typeReport):PDOStatement 
+    {
         $request = 'INSERT INTO report_type_comment (id_message_report, type_report, date_report) VALUES (:id_message_report, :type_report, NOW())';
 
         return $this->createRequest($request, [
@@ -89,14 +91,15 @@ class CommentManager extends ConnexionDb
     /**
      * @return PDOStatement
      */
-    public function listReportComment(int $currentPage):PDOStatement {
+    public function listReportComment(int $currentPage):PDOStatement 
+    {
         $first = ($currentPage * self::DEFAULT_SIZE) - self::DEFAULT_SIZE;
 
         $request = 'SELECT type_report, DATE_FORMAT(date_report, \'%d-%m-%Y à %hH:%mMin\') AS date_report_fr, author, comment, id
                     FROM report_type_comment 
                     LEFT JOIN comments ON id_message_report = comments.id 
                     WHERE report_comment = 1
-                    ORDER BY date_report DESC LIMIT ' .$first . ',' . self::DEFAULT_SIZE;
+                    ORDER BY date_report DESC LIMIT ' . $first . ',' . self::DEFAULT_SIZE;
 
         return $this->createRequest($request);
     }
@@ -105,7 +108,8 @@ class CommentManager extends ConnexionDb
      * @param integer $idMessageReport
      * @return PDOStatement
      */
-    public function deleteCommentReport(int $idMessageReport):PDOStatement {
+    public function deleteCommentReport(int $idMessageReport):PDOStatement 
+    {
         $request = 'DELETE FROM report_type_comment WHERE id_message_report = :id_message_report';
         
         return $this->createRequest($request, [
@@ -116,13 +120,15 @@ class CommentManager extends ConnexionDb
     /**
      * @return PDOStatement
      */
-    public function countReportComment():PDOStatement {
+    public function countReportComment():PDOStatement 
+    {
         $request = 'SELECT COUNT(*) FROM report_type_comment ORDER BY date_report DESC';
 
         return $this->createRequest($request);
     }
 
-    public function deleteTableReport($idComment):PDOStatement {
+    public function deleteTableReport($idComment):PDOStatement 
+    {
         $request = 'DELETE FROM report_type_comment WHERE id_message_report = :id_message_report';
         
         return $this->createRequest($request, [
@@ -130,7 +136,8 @@ class CommentManager extends ConnexionDb
         ]);
     }
 
-    public function commentReportAuthorized($idComment) {
+    public function commentReportAuthorized($idComment) 
+    {
         $request = 'UPDATE comments SET report_comment = 2 WHERE id = :id';
 
         return $this->createRequest($request, [
