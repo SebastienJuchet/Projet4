@@ -20,7 +20,7 @@
         <div class="container">
             <div class="row d-flex justify-content-end">
                 <div class="col-4 d-flex justify-content-end">
-                    <a href="admin-login?action=gestionChapitres&amp;page=<?= $_GET['page'] ?>&amp;post=<?=$post['id'] ?>" class="btn btn-dark">Voir</a>
+                    <a href="admin-login?action=gestionChapitres&amp;chapitre=<?=$post['id'] ?>" class="btn btn-dark">Voir</a>
                 </div>
             </div>
         </div>

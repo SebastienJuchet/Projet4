@@ -38,7 +38,7 @@ img {
     font-size: 1.8rem;
 }
 
-h2 {
+h2.title-underline {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: #2b4161;
     text-decoration: underline;

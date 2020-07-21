@@ -136,7 +136,11 @@ class CommentManager extends ConnexionDb
         ]);
     }
 
-    public function commentReportAuthorized($idComment) 
+    /**
+     * @param integer $idComment
+     * @return PDOStatement
+     */
+    public function commentReportAuthorized(int $idComment): PDOStatement 
     {
         $request = 'UPDATE comments SET report_comment = 2 WHERE id = :id';
 

@@ -49,7 +49,7 @@
             <div class="row">
                 <div class="col text-center">
                     <h1 class="mb-3">Jean Forteroche vous présente:</h1>
-                    <h2>"Billet simple pour l'Alaska"</h2>
+                    <h2 class="title-underline">"Billet simple pour l'Alaska"</h2>
                 </div>
             </div>
         </div>        

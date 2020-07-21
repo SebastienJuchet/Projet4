@@ -3,7 +3,7 @@
 <div class="container pt-5 pb-3">
     <div class="row mt-5 text-center">
         <div class="col">
-            <h2>Liste des commentaires signalés</h2>
+            <h2 class="title-underline">Liste des commentaires signalés</h2>
         </div>
     </div>
 </div>
@@ -30,10 +30,10 @@
             <div class="col col-md-2 mt-3 text-left">
                     <ul>
                         <li class="delete-comment pb-3">
-                            <a href="admin-login?action=gestionCommentaires&amp;page=<?= $_GET['page'] ?>&amp;supprimer=<?= $comment['id'] ?>">Supprimer</a>
+                            <a href="admin-login?action=gestionCommentaires&amp;page=<?= $_GET['page'] ?>&amp;supprimer=<?= $comment['id'] ?>" onclick="return deleteManagmentComment()">Supprimer</a>
                         </li>
                         <li class="validate-comment">
-                            <a href="admin-login?action=gestionCommentaires&amp;page=<?= $_GET['page'] ?>&amp;autoriser=<?= $comment['id'] ?>">Autoriser</a>
+                            <a href="admin-login?action=gestionCommentaires&amp;page=<?= $_GET['page'] ?>&amp;autoriser=<?= $comment['id'] ?>" onclick="return validateManagmentComment()">Autoriser</a>
                         </li>
                     </ul>
                 </div> 

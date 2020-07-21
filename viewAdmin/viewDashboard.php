@@ -29,7 +29,7 @@
             <div class="card" style="width: 18rem;">
                 <img src="public/img/nouveau-chapitre.jpg" class="card-img-top border" alt="chapitre">
                 <div class="card-body text-center">
-                    <a class="btn btn-primary" href="admin-login?action=gestionChapitres&amp;chapitre=nouveau">Editer un nouveau chapitre</a>
+                    <a class="btn btn-primary" href="admin-login?action=gestionChapitres&amp;chapitre=nouveau">Créer un nouveau chapitre</a>
                 </div>
             </div>
         </div>

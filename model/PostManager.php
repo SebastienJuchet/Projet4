@@ -30,7 +30,6 @@ class PostManager extends ConnexionDb
     }
 
     /**
-     * function pdo prepare
      * @param integer $postId
      * @return PDOStatement
      */
@@ -38,5 +37,20 @@ class PostManager extends ConnexionDb
     {
         $request = 'SELECT id, title, content, DATE_FORMAT(date_creation, \'%d-%m-%Y à %hH:%mMin\') AS date_creation_fr FROM post WHERE id = ?';
         return $this->createRequest($request, [$postId]);
+    }
+
+    /**
+     * @param string $title
+     * @param string $chapterContent
+     * @return PDOStatement
+     */
+    public function createPost(string $title, string $chapterContent): PDOStatement
+    {
+        $request = 'INSERT INTO post (title, content, date_creation) VALUES (:title, :content, NOW())';
+
+        return $this->createRequest($request,[
+            ':title' => $title,
+            ':content' => $chapterContent
+        ]);
     }
 }

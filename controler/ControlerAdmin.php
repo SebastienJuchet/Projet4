@@ -96,6 +96,9 @@ function allowCommentReport(int $idComment) {
     $updateComment = $commentManager->commentReportAuthorized($idComment);
 }
 
+/**
+ * function for display viewPostsManager
+ */
 function managementPosts() {
     require 'viewAdmin/viewPostsManager.php';
 }
@@ -110,4 +113,13 @@ function listPosts(int $currentPage) {
     $nbPages = ceil($nbPost / $postManager::DEFAULT_SIZE);
     
     require 'viewAdmin/viewAdminListPosts.php';
+}
+
+/**
+ * @param string $title
+ * @param string $chapterContent
+ */
+function createChapter(string $title, string $chapterContent) {
+    $postManager = new PostManager;
+    $create = $postManager->createPost($title, $chapterContent);
 }

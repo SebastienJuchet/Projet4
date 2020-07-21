@@ -2,7 +2,7 @@
 <div class="container">
     <div class="row">
         <div class="col pt-3">
-            <h2 class="mt-5 pt-5 text-center">Liste des chapitres</h2>
+            <h2 class="mt-5 pt-5 text-center title-underline">Liste des chapitres</h2>
         </div>
     </div>
 </div>

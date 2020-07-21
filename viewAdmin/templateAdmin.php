@@ -12,7 +12,9 @@
     <script defer src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" integrity="sha384-ujbKXb9V3HdK7jcWL6kHL1c+2Lj4MR4Gkjl7UtwpSHg/ClpViddK9TI7yU53frPN" crossorigin="anonymous"></script>
-    <script defer src="https://cdn.tiny.cloud/1/08cmdv5lq3z8ty5iuotm07bt5p5mmu2wg7c9nk2lrwizx9f5/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>  
+    <script defer src="public/js/apps.js"></script>
+    <script defer src="public/js/wysiwyg.js"></script>
+    <script src="https://cdn.tiny.cloud/1/08cmdv5lq3z8ty5iuotm07bt5p5mmu2wg7c9nk2lrwizx9f5/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <title>Billet simple pour l'Alaska</title>
 </head>
 

@@ -8,7 +8,7 @@
     </div>
     <div class="row">
         <div class="col pt-3 pb-3">
-            <h2 class="title_post">
+            <h2 class="title_post title-underline">
                 <?= htmlspecialchars($post['title']); ?>
             </h2>
         </div>
