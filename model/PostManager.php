@@ -6,7 +6,7 @@ class PostManager extends ConnexionDb
     /**
      * @var int
      */
-    public CONST DEFAULT_SIZE = 5;
+    public CONST DEFAULT_SIZE = 10;
 
     /**
      * function pdo query
@@ -51,6 +51,36 @@ class PostManager extends ConnexionDb
         return $this->createRequest($request,[
             ':title' => $title,
             ':content' => $chapterContent
+        ]);
+    }
+
+    /**
+     * @param integer $idPost
+     * @return PDOStatement
+     */
+    public function deletePost(int $idPost): PDOStatement
+    {
+        $request = 'DELETE FROM post WHERE id = :id';
+
+        return $this->createRequest($request, [
+            ':id' => $idPost
+        ]);
+    }
+
+    /**
+     * @param integer $postId
+     * @param string $title
+     * @param string $content
+     * @return PDOStatement
+     */
+    public function updatePost(int $postId,string $title, string $content):PDOStatement
+    {
+        $request = 'UPDATE post SET title = :title, content = :content WHERE id = :id';
+
+        return $this->createRequest($request, [
+            ':title' => $title,
+            ':content' => $content,
+            ':id' => $postId
         ]);
     }
 }

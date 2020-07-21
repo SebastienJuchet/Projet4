@@ -22,7 +22,7 @@
             </h5>
         </div>
         <div class="col-md-6 d-none d-md-block text-truncate">
-            <?= htmlspecialchars($listPost['content']) ?>
+            <?= $listPost['content'] ?>
         </div>
         <div class="container">
             <div class="row d-flex justify-content-end">

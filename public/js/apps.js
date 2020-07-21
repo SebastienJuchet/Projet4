@@ -3,11 +3,11 @@ if (document.getElementById('slider')) {
 }
 
 document.addEventListener('DOMContentLoaded', (e) => {
-    let wysiwyg = new Wysiwyg('#create-chapter');  
+    let wysiwyg = new Wysiwyg('#chapter');  
 });
 
-function deleteManagmentComment() {
-    if (confirm('Voulez-vous vraiment supprimer ce message ?')) {
+function deleteContent() {
+    if (confirm('Voulez-vous vraiment supprimer ?')) {
         return true;
     } else {
         return false;
@@ -16,6 +16,14 @@ function deleteManagmentComment() {
 
 function validateManagmentComment() {
     if (confirm('Voulez-vous vraiment autoriser ce message ?')) {
+        return true;
+    } else {
+        return false;
+    }
+};
+
+function validateUpdateChapter() {
+    if (confirm('Voulez-vous vraiment modifier ce chapitre ?')) {
         return true;
     } else {
         return false;

@@ -46,12 +46,32 @@ try {
             if (isset($_GET['chapitre']) && $_GET['chapitre'] === 'listeChapitres' && $_GET['page'] > 0) {
                 listPosts($_GET['page']);
             }
-            if (isset($_GET['chapitre']) && $_GET['chapitre'] === 'nouveau') {
-                require 'viewAdmin/viewCreateChapter.php';
-                if (!empty($_POST['title-create-chapter']) && !empty($_POST['create-chapter'])) {
-                    createChapter(htmlspecialchars($_POST['title-create-chapter']), $_POST['create-chapter']);
-                }
+        }
+
+        if ($_GET['action'] === 'creationChapitre') {
+            require 'viewAdmin/viewCreateUpdateChapter.php';
+        }
+        
+        if ($_GET['action'] === 'chapitreCreer') {
+            createChapter(htmlspecialchars($_POST['title-chapter']), $_POST['chapter-content']);
+        }
+
+        if ($_GET['action'] === 'voirChapitre') {
+            if (isset($_GET['chapitre']) && !empty($_GET['chapitre']) && $_GET['chapitre'] > 0) {
+                showPostAdmin($_GET['chapitre']);
             }
+        }
+
+        if ($_GET['action'] === 'supprimerChapitre') {
+            deletePost($_GET['chapitre']);
+        }
+
+        if ($_GET['action'] === 'modifierChapitre') {
+            viewEditPost($_GET['chapitre']);
+        }
+        
+        if ($_GET['action'] === 'chapitreModifier') {
+            editPost($_GET['chapitre'], $_POST['title-chapter'], $_POST['chapter-content']);
         }
     }
 

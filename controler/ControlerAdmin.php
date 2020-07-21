@@ -122,4 +122,43 @@ function listPosts(int $currentPage) {
 function createChapter(string $title, string $chapterContent) {
     $postManager = new PostManager;
     $create = $postManager->createPost($title, $chapterContent);
+
+    header('Location: admin-login?dashboard');
+}
+
+/**
+ * @param integer $postId
+ */
+function showPostAdmin(int $postId) {
+    $postManager = new PostManager;
+    $post = $postManager->getPost($postId)->fetch();
+    
+    require 'viewAdmin/viewPostAdmin.php';
+}
+
+/**
+ * @param integer $postId
+ */
+function deletePost(int $postId) {
+    $postManager = new PostManager;
+    $postDelete = $postManager->deletePost($postId);
+
+    header('Location: admin-login?action=gestionChapitres&chapitre=listeChapitres&page=1');
+}
+
+function viewEditPost($postId) {
+    $postManager = new PostManager;
+    $post = $postManager->getPost($postId)->fetch();
+
+    require 'viewAdmin/viewCreateUpdateChapter.php';
+}
+
+function editPost($postId, $title, $content) {
+
+    $postManager = new PostManager;
+    if (!empty($_POST['title-chapter']) && !empty($_POST['chapter-content'])) {
+        $updatePost = $postManager->updatePost($postId, $title, $content);
+        header('Location: admin-login?action=gestionChapitres&chapitre=listeChapitres&page=1');
+    }
+    
 }

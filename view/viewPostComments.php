@@ -23,7 +23,7 @@
     </div>
         
         <div class="col pt-3 pb-3 text-left" id="post-content">
-            <?= htmlspecialchars($post['content']) ?>
+            <?= $post['content'] ?>
         </div>        
     </div>
 </div>

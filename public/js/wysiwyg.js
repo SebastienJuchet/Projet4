@@ -9,7 +9,11 @@ class Wysiwyg {
         tinymce.init({
             selector: 'textarea' + this.id,
             language: 'fr_FR',
-            plugins: 'bbcode'
+            plugins: 'advlist autolink preview fullscreen emoticons',
+            menubar: 'view file edit format',
+            toolbar: 'fullscreen | undo redo | bold italic | ' +
+            'alignleft aligncenter alignright alignjustify | ' +
+            'outdent indent | numlist bullist | emoticons',
         });
     }
 }
