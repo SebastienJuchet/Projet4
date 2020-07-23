@@ -21,9 +21,9 @@
 <body>
 <?php if(isset($_SESSION['admin'])): ?>
     <header>
-        <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark mb-5">
             <div class="container-fluid">
-                <a class="navbar-brand bd-highlight" href="admin-login?dashboard">
+                <a class="navbar-brand p-2 bd-highlight d-block d-lg-none" href="admin-login">
                     <i class="fas fa-home"></i>
                 </a>
 
@@ -33,6 +33,9 @@
 
                 <div class="collapse navbar-collapse bd-highlight" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="index.php">Voir votre site</a>
+                        </li>
                         <li class="nav-item ">
                             <a class="nav-link" href="admin-login?dashboard">Accueil</a>
                         </li>

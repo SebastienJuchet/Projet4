@@ -7,7 +7,7 @@ require_once 'model/CommentManager.php';
  */
 function listPosts(int $currentPage) {
     $posts = new PostManager();
-    $listPosts = $posts->getPosts($currentPage);
+    $listPosts = $posts->getPosts($currentPage)->fetchAll();
     $postPage = $posts->postCount()->fetchColumn();
 
     $nbPages = ceil($postPage / PostManager::DEFAULT_SIZE);

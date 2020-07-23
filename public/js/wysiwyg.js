@@ -1,6 +1,7 @@
 class Wysiwyg {
-    constructor (id) {
+    constructor (id, plugins) {
     
+        this.plugins = plugins.join(' ');
         this.id = id;
         this.initWysiwyg();
     }
@@ -9,7 +10,7 @@ class Wysiwyg {
         tinymce.init({
             selector: 'textarea' + this.id,
             language: 'fr_FR',
-            plugins: 'advlist autolink preview fullscreen emoticons',
+            plugins: this.plugins,
             menubar: 'view file edit format',
             toolbar: 'fullscreen | undo redo | bold italic | ' +
             'alignleft aligncenter alignright alignjustify | ' +

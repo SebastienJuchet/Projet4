@@ -112,18 +112,18 @@ function listPosts(int $currentPage) {
     $nbPost = $postManager->postCount()->fetchColumn();
     $nbPages = ceil($nbPost / $postManager::DEFAULT_SIZE);
     
-    require 'viewAdmin/viewAdminListPosts.php';
+    require_once 'viewAdmin/viewAdminListPosts.php';
 }
 
 /**
  * @param string $title
- * @param string $chapterContent
+ * @param string $content
  */
-function createChapter(string $title, string $chapterContent) {
+function createPost(string $title, string $content) {
     $postManager = new PostManager;
-    $create = $postManager->createPost($title, $chapterContent);
+    $create = $postManager->createPost($title, $content);
 
-    header('Location: admin-login?dashboard');
+    header('Location: admin-login?action=gestionChapitres&chapitre=listeChapitres&page=1');
 }
 
 /**
@@ -146,19 +146,26 @@ function deletePost(int $postId) {
     header('Location: admin-login?action=gestionChapitres&chapitre=listeChapitres&page=1');
 }
 
-function viewEditPost($postId) {
+/**
+ * @param integer $postId
+ */
+function viewEditPost(int $postId) {
     $postManager = new PostManager;
     $post = $postManager->getPost($postId)->fetch();
 
     require 'viewAdmin/viewCreateUpdateChapter.php';
 }
 
-function editPost($postId, $title, $content) {
+/**
+ * @param integer $postId
+ * @param string $title
+ * @param string $content
+ */
+function editPost(int $postId, string $title, string $content) {
 
     $postManager = new PostManager;
     if (!empty($_POST['title-chapter']) && !empty($_POST['chapter-content'])) {
         $updatePost = $postManager->updatePost($postId, $title, $content);
         header('Location: admin-login?action=gestionChapitres&chapitre=listeChapitres&page=1');
     }
-    
 }

@@ -126,9 +126,16 @@
             <form action="index.php?action=addComment&amp;id=<?= $_GET['id'] ?>" method="POST">
                 <div class="form-group">
                     <label for="author" id="author">Votre pseudo :</label>
-                    <input name="author" type="text" class="form-control" value="<?= @$_SESSION['author'];?>" >
+                    <input name="author" type="text" class="form-control" value="<?php if (!empty($_SESSION['admin'])) {
+                                                                                            echo 'Moderateur ' . ucfirst($_SESSION['admin']) . ' Forteroche';
+                                                                                        } elseif (!empty($_SESSION['author'])) {
+                                                                                            echo ucfirst($_SESSION['author']);
+                                                                                        } else {
+                                                                                            echo '';
+                                                                                        }
+                                                                                ?>" 
+                                                                                <?= (!empty($_SESSION)) ? 'readonly' : '' ?> >
                 </div>
-                
                 <div class="form-group">
                     <label for="comment" id="comment" class="primary">Votre commentaire :</label>
                     <textarea name="comment" class="form-control" rows="3" ></textarea>

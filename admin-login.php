@@ -53,7 +53,7 @@ try {
         }
         
         if ($_GET['action'] === 'chapitreCreer') {
-            createChapter(htmlspecialchars($_POST['title-chapter']), $_POST['chapter-content']);
+            createPost(htmlspecialchars($_POST['title-chapter']), $_POST['chapter-content']);
         }
 
         if ($_GET['action'] === 'voirChapitre') {

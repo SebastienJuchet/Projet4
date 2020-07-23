@@ -6,7 +6,7 @@ class PostManager extends ConnexionDb
     /**
      * @var int
      */
-    public CONST DEFAULT_SIZE = 10;
+    public CONST DEFAULT_SIZE = 6;
 
     /**
      * function pdo query
@@ -23,7 +23,7 @@ class PostManager extends ConnexionDb
     /**
      * @return PDOStatement
      */
-    public function postCount():PDOStatement 
+    public function postCount(): PDOStatement 
     {
         $request = 'SELECT COUNT(*) FROM post';
         return $this->createRequest($request);
@@ -41,16 +41,16 @@ class PostManager extends ConnexionDb
 
     /**
      * @param string $title
-     * @param string $chapterContent
+     * @param string $content
      * @return PDOStatement
      */
-    public function createPost(string $title, string $chapterContent): PDOStatement
+    public function createPost(string $title, string $content): PDOStatement
     {
         $request = 'INSERT INTO post (title, content, date_creation) VALUES (:title, :content, NOW())';
 
         return $this->createRequest($request,[
             ':title' => $title,
-            ':content' => $chapterContent
+            ':content' => $content
         ]);
     }
 
@@ -73,7 +73,7 @@ class PostManager extends ConnexionDb
      * @param string $content
      * @return PDOStatement
      */
-    public function updatePost(int $postId,string $title, string $content):PDOStatement
+    public function updatePost(int $postId, string $title, string $content): PDOStatement
     {
         $request = 'UPDATE post SET title = :title, content = :content WHERE id = :id';
 

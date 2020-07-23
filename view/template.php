@@ -15,11 +15,10 @@
         <title>Billet simple pour l'Alaska</title>
     </head>
     <body>
-    <?php if (!isset($_SESSION['admin'])): ?>
     <header>
-        <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark ">
+        <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
             <div class="container-fluid d-flex justify-content-end">
-                <a class="navbar-brand p-2 bd-highlight" href="index.php">
+                <a class="navbar-brand p-2 bd-highlight d-block d-lg-none" href="index.php">
                     <i class="fas fa-home"></i>
                 </a>
 
@@ -29,6 +28,11 @@
 
                 <div class="collapse navbar-collapse p-2 bd-highlight" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
+                        <?php if (isset($_SESSION['admin'])): ?>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="admin-login.php">Retour au tableau de bord</a>
+                            </li>
+                        <?php endif ?>
                         <li class="nav-item ">
                             <a class="nav-link" href="index.php">Accueil</a>
                         </li>
@@ -43,7 +47,6 @@
             </div>
         </nav>
     </header> 
-    <?php endif ?>
     <?php if (isset($slider) && $slider !== ''): ?>
         <div class="container mt-3">
             <div class="row">

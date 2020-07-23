@@ -7,38 +7,31 @@
     </div>
 </div>
 
-<?php while($listPost = $listPosts->fetch()): ?>
-
-<div class="container">
-    <div class="row d-flex flex-column flex-md-row" id="block_chapitres">
-        <div class="col col-md-3 text-center text-sm-left">
-            <h3> 
-                <?= htmlspecialchars($listPost['title']) ?> 
-            </h3>
-        </div>
-        <div class="col col-md-3 text-center text-sm-left">
-            <h5>
-                <?= $listPost['date_creation_fr'] ?> 
-            </h5>
-        </div>
-        <div class="col-md-6 d-none d-md-block text-truncate">
-            <?= $listPost['content'] ?>
-        </div>
-        <div class="container">
-            <div class="row d-flex justify-content-end">
-                <div class="col-4 d-flex justify-content-end">
-                    <a href="index.php?action=post&amp;id=<?= $listPost['id'] ?>&amp;pageComment=1" class="btn btn-dark">Lire</a>
+<div class="container pt-5 pt-sm-3 d-flex justify-content-center">
+    <div class="row d-flex flex-row justify-content-center mt-5 pt-5">
+        <?php foreach($listPosts as $post): ?>
+            <div class="col-12 col-sm-6 col-lg-3 ml-3 mb-5">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title pb-3 text-center border-bottom"><?= $post['title'] ?></h5>
+                        <div class="card-body" id="card-list-post">
+                            <?= $post['content'] ?>
+                        </div>
+                        <div class="card-footer text-center">
+                            <p>Posté le : <?= $post['date_creation_fr'] ?></p>
+                            <a class="btn btn-primary" href="index?action=post&amp;id=<?= $post['id'] ?>&amp;pageComment=1">Voir</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        <?php endforeach ?>
     </div>
 </div>
-<?php endwhile; ?>
-
+    
 <?php if ($nbPages > 1): ?>
 <div class="container">
-    <div class="row">
-        <div class="col">
+    <div class="row d-flex justify-content-center">
+        <div class="col-auto">
             <nav>
                 <ul class="pagination">
                     <li class="page-item <?= ($currentPage === 1) ? "disabled" : "" ?>">

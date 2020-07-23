@@ -48,6 +48,11 @@ h2.title-underline {
     text-transform: uppercase;
 }
 
+#card-list-post{
+    height: 10rem;
+    overflow: hidden;
+}
+
 #block_chapitres {
     padding: 2% 0;
     margin: 2% 0;
