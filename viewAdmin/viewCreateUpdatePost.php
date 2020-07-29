@@ -9,16 +9,16 @@
         <div class="col">
         <form action="admin-login?action=<?= ($_GET['action'] === 'modifierChapitre') ? 'chapitreModifier&chapitre=' . $_GET['chapitre'] : 'chapitreCreer' ?>" method="post">
             <div class="form-group mb-5">
-                <label class="font-weight-bold" for="title-chapter">Titre :</label>
-                <input class="form-control " type="text" name="title-chapter" value="<?= ($_GET['action'] === 'modifierChapitre') ? $post['title'] : '' ?>">
+                <label class="font-weight-bold" for="title-post">Titre :</label>
+                <input class="form-control " type="text" name="title-post" value="<?= ($_GET['action'] === 'modifierChapitre') ? $post['title'] : '' ?>">
             </div>
             
             <div class="form-group">
-                <label class="font-weight-bold " for="create-chapter">Contenu :</label>
-                <textarea class="form-control" id="chapter" name="chapter-content" rows="20" ><?= ($_GET['action'] === 'modifierChapitre') ? $post['content'] : '' ?></textarea>
+                <label class="font-weight-bold " for="create-post">Contenu :</label>
+                <textarea class="form-control" id="post" name="post-content" rows="20" ><?= ($_GET['action'] === 'modifierChapitre') ? $post['content'] : '' ?></textarea>
             </div>
             <div class="form-group mt-3 d-flex justify-content-end">
-                <button class="btn btn-primary" type="submit" <?= ($_GET['action'] === 'modifierChapitre') ? 'onclick="return validateUpdateChapter()"' : '' ?>>
+                <button class="btn btn-primary <?= ($_GET['action'] === 'modifierChapitre') ? 'update-post' : '' ?>" type="submit" >
                     <?= ($_GET['action'] === 'modifierChapitre') ? 'Modifier' : 'Créer' ?>
                 </button>
             </div>

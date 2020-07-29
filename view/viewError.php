@@ -1,6 +1,6 @@
 <?php ob_start(); ?>
 <div class="container mb-5 mt-5">
-    <div class="row ">
+    <div class="row pt-5">
         <div class="col text-center mb-3">
             <h1>Erreur : 
                 <?php if(isset($exception)) {

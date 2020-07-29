@@ -12,7 +12,7 @@ try {
         } elseif ($_GET['action'] === 'post' && isset($_GET['id']) && $_GET['id'] > 0 && isset($_GET['pageComment']) && $_GET['pageComment'] > 0) {
             showPost((int) $_GET['id'],(int) $_GET['pageComment']); 
         } if ($_GET['action'] === 'reportComment') {
-            reportComments((int) strip_tags($_GET['id_message']), (string) strip_tags($_POST['signalement']));
+            reportComments((int) strip_tags($_GET['idMessage']), (string) strip_tags($_POST['signalement']));
         } elseif ($_GET['action'] === 'addComment') {
             $postId = $_GET['id'];
             $author = htmlspecialchars($_POST['author']);

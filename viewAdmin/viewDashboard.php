@@ -13,7 +13,7 @@
             <div class="card" style="width: 18rem;">
                 <img src="public/img/chapitre.jpg" class="card-img-top border" alt="chapitre">
                 <div class="card-body text-center">
-                    <a class="btn btn-primary" href="admin-login?action=gestionChapitres&amp;chapitre=listeChapitres&amp;page=1">
+                    <a class="btn btn-primary" href="admin-login?action=listeChapitres&amp;page=1">
                         <?php if ($_SESSION['nb_chapitre'] == 1) {
                             echo "Vous avez {$_SESSION['nb_chapitre']} chapitre en ligne";
                         } elseif ($_SESSION['nb_chapitre'] > 1) {

@@ -16,12 +16,9 @@
     </head>
     <body>
     <header>
-        <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
             <div class="container-fluid d-flex justify-content-end">
-                <a class="navbar-brand p-2 bd-highlight d-block d-lg-none" href="index.php">
-                    <i class="fas fa-home"></i>
-                </a>
-
+           
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -48,7 +45,7 @@
         </nav>
     </header> 
     <?php if (isset($slider) && $slider !== ''): ?>
-        <div class="container mt-3">
+        <div class="container mt-5 pt-5">
             <div class="row">
                 <div class="col text-center">
                     <h1 class="mb-3">Jean Forteroche vous présente:</h1>
@@ -92,7 +89,20 @@
                     <h4 class="modal-title" id="exampleModalLabel">Jean Forteroche</h4>
                 </div>
             <div class="modal-body">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt quibusdam non rerum consequatur, veritatis delectus sed temporibus. Quam, placeat ipsam. Reprehenderit repellat blanditiis, sequi doloribus quod qui repellendus ipsa non voluptatibus aut sapiente eum fugiat soluta vitae pariatur voluptas animi, nemo corporis et dolorum assumenda expedita reiciendis. Alias perferendis quisquam sunt recusandae rerum. Odit ratione, laboriosam reiciendis quibusdam, cupiditate minima minus qui maxime optio assumenda iusto nobis beatae ea amet, dolores molestias. Excepturi quas, earum cumque, quos mollitia voluptas, eum ipsa delectus provident placeat voluptates et ratione. Aspernatur non cupiditate, itaque nulla minima, ratione esse, nesciunt quisquam odio perspiciatis dolor.</p>
+                <p>Jean Forteroche né le : 02 mai 1968 à Château-Briant est un écrivain de très grande renomée française.<br>
+                Pationné d'écriture depuis le plus jeune âge, il écrit son premier livre à l'âge de 15 ans. <br>
+                Il fît ses études à Dijon dans l'université de Bourgogne où il obtient son master 2 Métier du Livre en 1987.<br> 
+                Connus par la suite pour ses romans policiers et romans à suspense tel que :</p>
+                <ol>
+                    <li>Un corp retouvé sous le pont de la seine</li>
+                    <li>La ligne Rouge</li>
+                    <li>Qui a tué Léonard ...</li>
+                    <li>13 jours de nuits</li>
+                    <li>ect ...</li>
+                </ol>
+                <p>C'est avec joie qu'il vous présente son tout nouveau concept. <br>
+                Pour çà il vous met vous, chères lecteurs, à contributions grâce au système de commentaires. <br>
+                Il créera avec vous l'histoire d'une famille qui décide de quitter son pays natal pour vivre son rêve de l'autre côté de l'Atlantique.</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>

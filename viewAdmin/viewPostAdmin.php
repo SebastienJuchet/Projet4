@@ -15,7 +15,7 @@
     <div class="row pt-3">
         <div class="col">
             <a href="admin-login?action=modifierChapitre&amp;chapitre=<?= $_GET['chapitre'] ?>" class="btn btn-primary text-light">Modifier le chapitre</a>
-            <a href="admin-login?action=supprimerChapitre&amp;chapitre=<?= $_GET['chapitre'] ?>" class="btn btn-primary text-light" onclick="return deleteContent()">Supprimer le chapitre</a>
+            <a href="admin-login?action=supprimerChapitre&amp;chapitre=<?= $_GET['chapitre'] ?>" class="btn btn-primary text-light delete-content">Supprimer le chapitre</a>
         </div>
     </div>
 </div>

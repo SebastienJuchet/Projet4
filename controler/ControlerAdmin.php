@@ -55,9 +55,9 @@ function nbComments() {
 }
 
 /**
- * set the number of chapters
+ * set the number of post
  */
-function nbChapters() {
+function nbPosts() {
     $postManager = new PostManager();
     $nbPost = $postManager->postCount()->fetchColumn();
     $_SESSION['nb_chapitre'] = $nbPost;
@@ -85,6 +85,8 @@ function delComment(int $idComment) {
     $commentManager = new CommentManager();
     $req = $commentManager->deleteComment($idComment);
     $req = $commentManager->deleteCommentReport($idComment);
+
+    header('Location: admin-login?action=gestionCommentaires&page=1');
 }
 
 /**
@@ -94,6 +96,8 @@ function allowCommentReport(int $idComment) {
     $commentManager = new CommentManager;
     $deleteReportTable = $commentManager->deleteTableReport($idComment);
     $updateComment = $commentManager->commentReportAuthorized($idComment);
+
+    header('Location: admin-login?action=gestionCommentaires&page=1');
 }
 
 /**
@@ -123,7 +127,7 @@ function createPost(string $title, string $content) {
     $postManager = new PostManager;
     $create = $postManager->createPost($title, $content);
 
-    header('Location: admin-login?action=gestionChapitres&chapitre=listeChapitres&page=1');
+    header('Location: admin-login?action=listeChapitres&page=1');
 }
 
 /**
@@ -143,7 +147,7 @@ function deletePost(int $postId) {
     $postManager = new PostManager;
     $postDelete = $postManager->deletePost($postId);
 
-    header('Location: admin-login?action=gestionChapitres&chapitre=listeChapitres&page=1');
+    header('Location: admin-login?action=listeChapitres&page=1');
 }
 
 /**
@@ -153,7 +157,7 @@ function viewEditPost(int $postId) {
     $postManager = new PostManager;
     $post = $postManager->getPost($postId)->fetch();
 
-    require 'viewAdmin/viewCreateUpdateChapter.php';
+    require 'viewAdmin/viewCreateUpdatePost.php';
 }
 
 /**
@@ -164,8 +168,8 @@ function viewEditPost(int $postId) {
 function editPost(int $postId, string $title, string $content) {
 
     $postManager = new PostManager;
-    if (!empty($_POST['title-chapter']) && !empty($_POST['chapter-content'])) {
+    if (!empty($_POST['title-post']) && !empty($_POST['post-content'])) {
         $updatePost = $postManager->updatePost($postId, $title, $content);
-        header('Location: admin-login?action=gestionChapitres&chapitre=listeChapitres&page=1');
+        header('Location: admin-login?action=listeChapitres&page=1');
     }
 }

@@ -1,15 +1,15 @@
 <?php ob_start(); ?>
 
 <div class="container mt-5 pt-5 text-center">
-    <div class="row">
-        <div class="col-12 pt-3 text-left">
+    <div class="row d-flex justify-content-between">
+        <div class="col-auto pt-3 text-left">
             <a href="index.php?action=listeChapitres&amp;page=1" class="return">Retour à la liste des chapitres</a>
         </div>
     </div>
     <div class="row">
         <div class="col pt-3 pb-3">
             <h2 class="title_post title-underline">
-                <?= htmlspecialchars($post['title']); ?>
+                <?= $post['title'] ?>
             </h2>
         </div>
     </div>
@@ -27,12 +27,12 @@
         </div>        
     </div>
 </div>
-<?php while ($comment = $comments->fetch()): ?>
+<?php foreach ($comments as $comment): ?>
 <div class="container mt-3" id>
     <div class="row d-flex justify-content-around" id="block-comment-post">
         <div class="col mt-3 mb-3" >
            <p class="comment-infos"><span>Poster le : </span><?= $comment['creation_date_fr'] ?><br> 
-           <span>Par : </span><?= $comment['author'] ?></p>
+           <span>Par : </span><?= ($comment['author'] === 'Jean Forteroche') ? '<span class="text-danger">' . $comment['author'] . '</span>' : $comment['author'] ?></p>
         </div>
         <div class="col mt-3 mb-3 text-right">
             <?php if ($comment['report_comment'] == 1) {
@@ -72,7 +72,7 @@
                 </button>
             </div>
             <div class="modal-body"> 
-                <form id="modalForm" action="index.php?action=reportComment&amp;id_message=<?= $comment['id'] ?>" method="post">
+                <form id="modalForm" action="index.php?action=reportComment&amp;idMessage=<?= $comment['id'] ?>&amp;idPost=<?= $_GET['id'] ?>" method="post">
                     <label for="signalement">Motif</label>
                     <select class="custom-select custom-select-sm" name="signalement">dqsd
                         <option value="violent">Violent</option>
@@ -91,7 +91,7 @@
         </div>
     </div>
 </div>
-<?php endwhile; ?>
+<?php endforeach; ?>
 
 <?php if ($nbPages > 1): ?>
 <div class="container">
@@ -99,19 +99,19 @@
         <div class="col">
             <nav>
                 <ul class="pagination">
-                    <li class="page-item <?= ($currentPage === 1) ? "disabled" : "" ?>">
-                        <a href="index.php?action=post&amp;id=<?= $_GET['id'] ?>&amp;pageComment=<?= $currentPage - 1 ?>" class="page-link">Précédent</a>
+                    <li class="page-item <?= ($currentPage() === 1) ? "disabled" : "" ?>">
+                        <a href="index.php?action=post&amp;id=<?= $_GET['id'] ?>&amp;pageComment=<?= $currentPage() - 1 ?>" class="page-link">Précédent</a>
                     </li>
 
                 <?php for($page = 1; $page <= $nbPages; $page++): ?>
 
-                    <li class="page-item <?= ($currentPage == $page) ? "active" : "" ?>">
+                    <li class="page-item <?= ($currentPage() == $page) ? "active" : "" ?>">
                         <a href="index.php?action=post&amp;id=<?= $_GET['id'] ?>&amp;pageComment=<?= $page ?>" class="page-link"><?= $page; ?></a>
                     </li>
 
                 <?php endfor ?>
-                    <li class="page-item <?= ($currentPage == $nbPages) ? "disabled" : "" ?>">
-                        <a href="index.php?action=post&amp;id=<?= $_GET['id'] ?>&amp;pageComment=<?= $currentPage + 1 ?>" class="page-link">Suivant</a>
+                    <li class="page-item <?= ($currentPage() == $commentControler->nbPages()) ? "disabled" : "" ?>">
+                        <a href="index.php?action=post&amp;id=<?= $_GET['id'] ?>&amp;pageComment=<?= $currentPage() + 1 ?>" class="page-link">Suivant</a>
                     </li>
                 </ul>
             </nav>
@@ -127,14 +127,14 @@
                 <div class="form-group">
                     <label for="author" id="author">Votre pseudo :</label>
                     <input name="author" type="text" class="form-control" value="<?php if (!empty($_SESSION['admin'])) {
-                                                                                            echo 'Moderateur ' . ucfirst($_SESSION['admin']) . ' Forteroche';
+                                                                                            echo ucfirst($_SESSION['admin']) . ' Forteroche';
                                                                                         } elseif (!empty($_SESSION['author'])) {
                                                                                             echo ucfirst($_SESSION['author']);
                                                                                         } else {
                                                                                             echo '';
                                                                                         }
                                                                                 ?>" 
-                                                                                <?= (!empty($_SESSION)) ? 'readonly' : '' ?> >
+                                                                                <?= (!empty($_SESSION['admin'])) ? 'readonly' : '' ?> >
                 </div>
                 <div class="form-group">
                     <label for="comment" id="comment" class="primary">Votre commentaire :</label>

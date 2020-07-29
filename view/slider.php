@@ -15,11 +15,11 @@
             <img src="public/img/montagne-neige.jpg" alt="...">
         </div>
     </div>
-    <div class="container-fluid">
+    <div class="container mt-3 mb-3">
         <div class="row">
             <p id="description" class="text-center font-weight-bold">Bienvenue sur mon blog où vous pourrez découvrir mon dernier livre. <br>
-            Ce livre je l'écrirai avec vous, se serais à l'écoute de vos commentaires pour l'inventer avec vous. <br>
-            Tous les chapitres seront accessible sur se blog.</p>
+            Ce livre je l'écrirai avec vous, je serais à l'écoute de vos commentaires pour le créer et le faire vivre avec vous. <br>
+            La totatlité des chapitres seront accessible sur se blog.</p>
         </div>
     </div>
 </div>

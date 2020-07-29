@@ -34,8 +34,14 @@ img {
 /* page liste post et post avec commentaires */
 
 #description {
-    width: 100%;
+    font-style: italic;
     font-size: 1.8rem;
+    transition: all 1s;
+}
+
+#description:hover {
+    font-style: normal;
+    font-size: 2rem;
 }
 
 h2.title-underline {
@@ -115,4 +121,9 @@ li.validate-comment::before {
     content: "V";
     color: green;
     font-weight: bold;
+}
+
+.post-content-admin {
+    max-height: 10rem;
+    overflow: hidden;
 }

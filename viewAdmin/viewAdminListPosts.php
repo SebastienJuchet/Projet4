@@ -14,7 +14,7 @@
                 <?= $post['date_creation_fr'] ?> 
             </h5>
         </div>
-        <div class="col-md-6 d-none d-md-block text-truncate">
+        <div class="col-md-6 d-none d-md-block text-truncate post-content-admin">
             <?= $post['content'] ?>
         </div>
         <div class="container">
@@ -31,15 +31,15 @@
     <div class="col d-flex justify-content-center">
         <ul class="pagination">
             <li class="page-item <?= ($currentPage == 1) ? 'disabled' : '' ?>">
-                <a class="page-link" href="admin-login?action=gestionChapitres&amp;chapitre=listeChapitres&amp;page=<?= $currentPage - 1 ?>">Previous</a>
+                <a class="page-link" href="admin-login?action=listeChapitres&amp;page=<?= $currentPage - 1 ?>">Previous</a>
             </li>
             <?php for ($page = 1; $page <= $nbPages; $page++): ?>
                 <li class="page-item <?= ($currentPage == $page) ? 'active' : '' ?>">
-                    <a class="page-link" href="admin-login?action=gestionChapitres&amp;chapitre=listeChapitres&amp;page=<?= $page ?>"><?= $page ?></a>
+                    <a class="page-link" href="admin-login?action=listeChapitres&amp;page=<?= $page ?>"><?= $page ?></a>
                 </li>
             <?php endfor ?>
             <li class="page-item <?= ($currentPage == $nbPages) ? 'disabled' : '' ?>">
-                <a class="page-link" href="admin-login?action=gestionChapitres&amp;chapitre=listeChapitres&amp;page=<?= $currentPage + 1 ?>">Next</a>
+                <a class="page-link" href="admin-login?action=listeChapitres&amp;page=<?= $currentPage + 1 ?>">Next</a>
             </li>
         </ul>
     </div>

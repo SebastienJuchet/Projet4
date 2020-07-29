@@ -10,7 +10,7 @@
 <div class="container pt-5 pt-sm-3 d-flex justify-content-center">
     <div class="row d-flex flex-row justify-content-center mt-5 pt-5">
         <?php foreach($listPosts as $post): ?>
-            <div class="col-12 col-sm-6 col-lg-3 ml-3 mb-5">
+            <div class="col-12 col-sm-5 col-lg-3 ml-3 mb-5">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title pb-3 text-center border-bottom"><?= $post['title'] ?></h5>
@@ -27,7 +27,6 @@
         <?php endforeach ?>
     </div>
 </div>
-    
 <?php if ($nbPages > 1): ?>
 <div class="container">
     <div class="row d-flex justify-content-center">

@@ -4,18 +4,24 @@ if (document.getElementById('slider')) {
 
 document.addEventListener('DOMContentLoaded', (e) => {
     if (typeof(document.getElementsByTagName('textarea')) !== undefined) {
-        let wysiwyg = new Wysiwyg('#chapter', ['advlist', 'autolink', 'preview', 'fullscreen', 'emoticons']);  
+        let wysiwyg = new Wysiwyg('#post', ['advlist', 'autolink', 'preview', 'fullscreen', 'emoticons']);  
     };
 })
 
-function deleteContent() {
-    return confirm('Voulez-vous vraiment supprimer ?') ? true : false;
-};
+if (document.querySelector('.delete-content')) {
+    document.querySelector('.delete-content').addEventListener('click', () => {
+        confirm('Voulez-vous vraiment supprimer ?') ? true : false;
+    });
+}
 
-function validateManagmentComment() {
-    return confirm('Voulez-vous vraiment autoriser ce message ?') ? true : false;
-};
+if (document.querySelector('.validate-comment')) {
+    document.querySelector('.validate-comment').addEventListener('click', () => {
+        confirm('Voulez-vous vraiment autoriser ce message ?') ? true : false;
+    });
+}
 
-function validateUpdateChapter() {
-    return confirm('Voulez-vous vraiment modifier ce chapitre ?') ? true : false;
-};
+if (document.querySelector('.update-post')) {
+    document.querySelector('.update-post').addEventListener('click', () => {
+        confirm('Voulez-vous vraiment modifier ce chapitre ?') ? true : false;
+    });
+}

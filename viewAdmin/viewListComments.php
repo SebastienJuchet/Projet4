@@ -30,10 +30,10 @@
             <div class="col col-md-2 mt-3 text-left">
                     <ul>
                         <li class="delete-comment pb-3">
-                            <a href="admin-login?action=gestionCommentaires&amp;page=<?= $_GET['page'] ?>&amp;supprimer=<?= $comment['id'] ?>" onclick="return deleteContent()">Supprimer</a>
+                            <a href="admin-login?action=deleteComment&amp;id=<?= $comment['id'] ?>" class="delete-content" >Supprimer</a>
                         </li>
                         <li class="validate-comment">
-                            <a href="admin-login?action=gestionCommentaires&amp;page=<?= $_GET['page'] ?>&amp;autoriser=<?= $comment['id'] ?>" onclick="return validateManagmentComment()">Autoriser</a>
+                            <a href="admin-login?action=allowComment&amp;id=<?= $comment['id'] ?>" class="validate-comment">Autoriser</a>
                         </li>
                     </ul>
                 </div> 

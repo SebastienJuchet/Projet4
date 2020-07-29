@@ -43,7 +43,9 @@ function showPost(int $postId,int $currentPage) {
  */
 function createComments(int $postId, string $author, string $com,int $reportComment) {
     
-    if ($author !== "" && $com !== "") {
+    if(strtolower($author) === 'jean forteroche') {
+        throw new Exception('Nom réseré');
+    } elseif ($author !== "" && $com !== "") {
         $commentManager = new CommentManager();
         $comment = $commentManager->newComment($postId, $author, $com, $reportComment);
         header('Location: index.php?action=post&id=' . $postId . '&pageComment=1' );

@@ -4,7 +4,7 @@ session_start();
 try {
     if (empty($_GET)) {
         nbComments();
-        nbChapters();
+        nbPosts();
         require_once 'viewAdmin/viewAdminConnexion.php';
     } 
     
@@ -22,7 +22,7 @@ try {
     
     if (isset($_GET['dashboard']) && empty($_GET['dashboard'])) {
         nbComments();
-        nbChapters();
+        nbPosts();
         require 'viewAdmin/viewDashboard.php';
     }
 
@@ -34,44 +34,31 @@ try {
         
         if ($_GET['action'] === 'gestionCommentaires' && $_GET['page'] > 0) {
             managementComments($_GET['page']);
-            if (isset($_GET['supprimer']) && $_GET['supprimer'] > 0) {
-                delComment($_GET['supprimer']);
-            } elseif (isset($_GET['autoriser']) && $_GET['autoriser'] > 0) {
-                allowCommentReport($_GET['autoriser']);
-            }
-        }
-
+        } elseif ($_GET['action'] === 'deleteComment' && isset($_GET['id']) && $_GET['id'] > 0) {
+            delComment($_GET['id']);
+        } elseif ($_GET['action'] === 'allowComment' && isset($_GET['id']) && $_GET['id'] > 0) {
+            allowCommentReport($_GET['id']);
+        } 
+        
         if ($_GET['action'] === 'gestionChapitres') {
             managementPosts();
-            if (isset($_GET['chapitre']) && $_GET['chapitre'] === 'listeChapitres' && $_GET['page'] > 0) {
-                listPosts($_GET['page']);
-            }
-        }
-
-        if ($_GET['action'] === 'creationChapitre') {
-            require 'viewAdmin/viewCreateUpdateChapter.php';
-        }
-        
-        if ($_GET['action'] === 'chapitreCreer') {
-            createPost(htmlspecialchars($_POST['title-chapter']), $_POST['chapter-content']);
-        }
-
-        if ($_GET['action'] === 'voirChapitre') {
+        } elseif ($_GET['action'] === 'listeChapitres' && $_GET['page'] > 0) {
+            listPosts($_GET['page']);
+        } elseif ($_GET['action'] === 'creationChapitre') {
+            require 'viewAdmin/viewCreateUpdatePost.php';
+        } elseif ($_GET['action'] === 'chapitreCreer') {
+            createPost(htmlspecialchars($_POST['title-post']), $_POST['post-content']);
+        } elseif ($_GET['action'] === 'voirChapitre') {
             if (isset($_GET['chapitre']) && !empty($_GET['chapitre']) && $_GET['chapitre'] > 0) {
                 showPostAdmin($_GET['chapitre']);
             }
-        }
-
+        } 
         if ($_GET['action'] === 'supprimerChapitre') {
             deletePost($_GET['chapitre']);
-        }
-
-        if ($_GET['action'] === 'modifierChapitre') {
+        } elseif ($_GET['action'] === 'modifierChapitre') {
             viewEditPost($_GET['chapitre']);
-        }
-        
-        if ($_GET['action'] === 'chapitreModifier') {
-            editPost($_GET['chapitre'], $_POST['title-chapter'], $_POST['chapter-content']);
+        } elseif ($_GET['action'] === 'chapitreModifier') {
+            editPost($_GET['chapitre'], $_POST['title-post'], $_POST['post-content']);
         }
     }
 
