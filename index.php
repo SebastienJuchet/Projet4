@@ -1,36 +1,37 @@
 <?php 
-require 'controler/Main.php';
+require 'controler/MainControler.php';
 session_start();
 
-try {
-    if(empty($_GET)) {
+$mainControler = new MainControler;
+$action = '';
+
+if (isset($_GET['action'])) {
+    $action = $_GET['action'];
+} else {
     require_once 'view/slider.php';
-    } 
-    if (isset($_GET['action'])) {
-        if ($_GET['action'] === 'listeChapitres' && isset($_GET['page']) && $_GET['page'] > 0) {
-            listPosts((int) strip_tags($_GET['page']));
-        } elseif ($_GET['action'] === 'post' && isset($_GET['id']) && $_GET['id'] > 0 && isset($_GET['pageComment']) && $_GET['pageComment'] > 0) {
-            showPost((int) $_GET['id'],(int) $_GET['pageComment']); 
-        } if ($_GET['action'] === 'reportComment') {
-            reportComments((int) strip_tags($_GET['idMessage']), (string) strip_tags($_POST['signalement']));
-        } elseif ($_GET['action'] === 'addComment') {
-            $postId = $_GET['id'];
-            $author = htmlspecialchars($_POST['author']);
-            $comment = htmlspecialchars($_POST['comment']);
-            $reportComment = false;
-            $_SESSION['author'] = $author;
-            
-            if (!empty($author) && !empty($comment)) {
-                createComments($postId, $author, $comment, $reportComment);
-            } else {
-                throw new Exception('Vous n\'avez pas remplis les champs demandés !!!');
-            }           
-        } if (empty($_GET['action'])) {
-            throw new Exception('La page n\'existe pas');
-        }
-    } else {
-        throw new Exception('L\'action n\'existe pas');
-    } 
+}
+
+try {
+    switch ($action) {
+        case 'listeChapitres';
+            $mainControler->listPosts();
+        break;
+        
+        case 'post';
+            $mainControler->showPost();
+        break;
+        
+        case 'addComment';
+            $mainControler->CeateComments();
+        break;
+
+        case 'reportComment';
+            $mainControler->reportComments();
+        break;
+
+        default;
+            throw new Exception('<span class="text-danger">404 </span>l\'action n\'existe pas');
+    }
 }
 
 catch (Exception $exception) {

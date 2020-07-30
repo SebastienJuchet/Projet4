@@ -11,7 +11,11 @@ function listPosts(int $currentPage) {
     $postPage = $posts->postCount()->fetchColumn();
 
     $nbPages = ceil($postPage / PostManager::DEFAULT_SIZE);
-    require 'view/viewListPosts.php';    
+    if ($currentPage > $nbPages) {
+        throw new Exception('La page demandé n\'éxiste pas !!!');
+    } else {
+        require 'view/viewListPosts.php';
+    }
 }
 
 /**
@@ -35,22 +39,40 @@ function showPost(int $postId,int $currentPage) {
 }
 
 /**
+ * @param string $author
+ * @param string $com
+ * @return boolean
+ */
+function validateFormComment(string $author, string $com): bool {
+    $error = false;
+    if (empty($author) || empty($com) || strtolower($author) === 'jean forteroche') {
+        $error = true;
+    }
+
+    if ($_SESSION['admin'] && !empty($com)) {
+        $error = false;
+    }
+
+    return $error;
+}
+
+/**
  * @param integer $postId
  * @param string $author
  * @param string $com
  * @param integer $reportComment
  * @return void
  */
-function createComments(int $postId, string $author, string $com,int $reportComment) {
-    
-    if(strtolower($author) === 'jean forteroche') {
-        throw new Exception('Nom réseré');
-    } elseif ($author !== "" && $com !== "") {
+function createComments(int $postId, string $author, string $com, int $reportComment) {
+    $error = validateFormComment($author, $com);
+    if ($error === false) {
         $commentManager = new CommentManager();
         $comment = $commentManager->newComment($postId, $author, $com, $reportComment);
+        unset($_SESSION['error-comment']);
         header('Location: index.php?action=post&id=' . $postId . '&pageComment=1' );
     } else {
-        echo 'les champs ne sont pas remplis';
+        $_SESSION['error-comment'] = 'Les champs ne sont pas remplis ou le pseudo est réservé';
+        header('Location: index.php?action=post&id=' . $postId . '&pageComment=1' );
     }
 }
 
@@ -59,10 +81,15 @@ function createComments(int $postId, string $author, string $com,int $reportComm
  * @param string $typeReport
  * @return void
  */
-function reportComments(int $idComment, string $typeReport) {
+function reportComments(int $idComment, string $typeReport, int $postId) {
     $commentManager = new CommentManager();
     $reportComment = $commentManager->updateReportComment($idComment);
 
     $reportCommentAdmin = $commentManager->reportComment($idComment, $typeReport);
-    header('Location: index.php?action=listeChapitres&page=1');
+    header('Location: index.php?action=post&id=' . $postId . '&pageComment=1');
+}
+
+class CommenntControler
+{
+    
 }
