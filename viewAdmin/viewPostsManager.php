@@ -7,7 +7,7 @@
             <h5 class="card-title pt-3 text-center">Les chapitres</h5>
                 <img src="public/img/livre.jpg" class="card-img-top border" alt="chapitre">
                 <div class="card-body text-center">
-                    <a class="btn btn-primary" href="admin-login?action=listeChapitres&amp;page=1">Liste de tous les chapitres</a>
+                    <a class="btn btn-primary" href="admin-login?action=listeChapitres&amp;page=1">Voir <?= ($_SESSION['nb_chapitre'] === 1) ? 'le chapitre' : 'les ' . $_SESSION['nb_chapitre'] . ' chapitres' ?></a>
                 </div>
             </div>
         </div>

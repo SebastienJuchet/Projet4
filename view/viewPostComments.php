@@ -99,19 +99,19 @@
         <div class="col">
             <nav>
                 <ul class="pagination">
-                    <li class="page-item <?= ($currentPage() === 1) ? "disabled" : "" ?>">
-                        <a href="index.php?action=post&amp;id=<?= $_GET['id'] ?>&amp;pageComment=<?= $currentPage() - 1 ?>" class="page-link">Précédent</a>
+                    <li class="page-item <?= ($currentPage == 1) ? "disabled" : "" ?>">
+                        <a href="index.php?action=post&amp;id=<?= $_GET['id'] ?>&amp;pageComment=<?= $currentPage - 1 ?>" class="page-link">Précédent</a>
                     </li>
 
                 <?php for($page = 1; $page <= $nbPages; $page++): ?>
 
-                    <li class="page-item <?= ($currentPage() == $page) ? "active" : "" ?>">
+                    <li class="page-item <?= ($currentPage == $page) ? "active" : "" ?>">
                         <a href="index.php?action=post&amp;id=<?= $_GET['id'] ?>&amp;pageComment=<?= $page ?>" class="page-link"><?= $page; ?></a>
                     </li>
 
                 <?php endfor ?>
-                    <li class="page-item <?= ($currentPage() == $commentControler->nbPages()) ? "disabled" : "" ?>">
-                        <a href="index.php?action=post&amp;id=<?= $_GET['id'] ?>&amp;pageComment=<?= $currentPage() + 1 ?>" class="page-link">Suivant</a>
+                    <li class="page-item <?= ($currentPage == $nbPages) ? "disabled" : "" ?>">
+                        <a href="index.php?action=post&amp;id=<?= $_GET['id'] ?>&amp;pageComment=<?= $currentPage + 1 ?>" class="page-link">Suivant</a>
                     </li>
                 </ul>
             </nav>
@@ -124,6 +124,11 @@
     <div class="row mt-3">
         <div class="col-6">
             <form action="index.php?action=addComment&amp;id=<?= $_GET['id'] ?>" method="POST">
+                <?php if(isset($_SESSION['error-comment'])): ?>
+                    <div class="bg-danger text-white pt-3 pb-3 pl-3 rounded text-center">
+                        <?php echo $_SESSION['error-comment']; unset($_SESSION['error-comment']); ?>
+                    </div>
+                <?php endif ?>
                 <div class="form-group">
                     <label for="author" id="author">Votre pseudo :</label>
                     <input name="author" type="text" class="form-control" value="<?php if (!empty($_SESSION['admin'])) {
