@@ -1,8 +1,15 @@
 <?php
 require_once 'model/PostManager.php';
 require_once 'model/CommentManager.php';
+
 class MainControler
 {
+
+    public function __construct()
+    {
+        $this->postManager = new PostManager;
+        $this->commentManager = new CommentManager;
+    }
 
     /**
      * function for display list of posts
@@ -14,9 +21,8 @@ class MainControler
         } else {
             header('Location: index');
         }
-        $posts = new PostManager();
-        $listPosts = $posts->getPosts($currentPage)->fetchAll();
-        $postPage = $posts->postCount()->fetchColumn();
+        $listPosts = $this->postManager->getPosts($currentPage)->fetchAll();
+        $postPage = $this->postManager->postCount()->fetchColumn();
 
         $nbPages = ceil($postPage / PostManager::DEFAULT_SIZE);
         if ($currentPage > $nbPages) {
@@ -37,14 +43,12 @@ class MainControler
         } else {
             header('Location: index?action=listeChapitres&page=1');
         }
-        $postManager = new PostManager();
-        $post = $postManager->getPost($postId)->fetch();
+        $post = $this->postManager->getPost($postId)->fetch();
 
-        $commentManager = new CommentManager();
-        $nbComments = $commentManager->countComments($postId)->fetchColumn();
+        $nbComments = $this->commentManager->countComments($postId)->fetchColumn();
         $nbPages = ceil($nbComments / CommentManager::DEFAULT_SIZE);
 
-        $comments = $commentManager->getComments($postId, $currentPage);
+        $comments = $this->commentManager->getComments($postId, $currentPage);
         
         require 'view/viewPostComments.php';
     }
@@ -54,13 +58,13 @@ class MainControler
      * @param string $com
      * @return boolean
      */
-    private function validateFormComment(string $author, string $com): bool {
+    private function validateFormComment(string $author, string $comment): bool {
         $error = false;
-        if (empty($author) || empty($com) || strtolower($author) === 'jean forteroche') {
+        if (empty($author) || empty($comment) || strtolower($author) === 'jean forteroche') {
             $error = true;
         }
 
-        if ($_SESSION['admin'] && !empty($com)) {
+        if ($_SESSION['admin'] && !empty($comment)) {
             $error = false;
         }
 
@@ -78,10 +82,9 @@ class MainControler
         $reportComment = (bool) false;
         $_SESSION['author'] = $author;
 
-        $error = validateFormComment($author, $comment);
+        $error = $this->validateFormComment($author, $comment);
         if ($error === false) {
-            $commentManager = new CommentManager();
-            $comment = $commentManager->newComment($postId, $author, $comment, $reportComment);
+            $comment = $this->commentManager->newComment($postId, $author, $comment, $reportComment);
             unset($_SESSION['error-comment']);
             header('Location: index.php?action=post&id=' . $postId . '&pageComment=1' );
         } else {
@@ -99,10 +102,9 @@ class MainControler
         $typeReport = strip_tags($_POST['signalement']);
         $postId = strip_tags($_GET['idPost']);
 
-        $commentManager = new CommentManager();
-        $reportComment = $commentManager->updateReportComment($idComment);
+        $reportComment = $this->commentManager->updateReportComment($idComment);
     
-        $reportCommentAdmin = $commentManager->reportComment($idComment, $typeReport);
+        $reportCommentAdmin = $this->commentManager->reportComment($idComment, $typeReport);
         header('Location: index.php?action=post&id=' . $postId . '&pageComment=1');
     }
 }
