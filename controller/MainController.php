@@ -22,7 +22,7 @@ class MainControler
             header('Location: index');
         }
         $listPosts = $this->postManager->getPosts($currentPage)->fetchAll();
-        $postPage = $this->postManager->postCount()->fetchColumn();
+        $postPage = $this->postManager->countPosts()->fetchColumn();
 
         $nbPages = ceil($postPage / PostManager::DEFAULT_SIZE);
         if ($currentPage > $nbPages) {

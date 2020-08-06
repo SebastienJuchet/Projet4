@@ -1,5 +1,12 @@
 <?php ob_start(); ?>
 <div class="container mt-5 pt-5">
+    <?php if (isset($_SESSION['error-content-post'])): ?>
+        <div class="row mb-3 mb-sm-5 alert alert-danger">
+            <div class="col text-center">
+                <?= $_SESSION['error-content-post']; unset($_SESSION['error-content-post']); ?>
+            </div>
+        </div>
+    <?php endif ?>
     <div class="row mb-3 mb-sm-5">
         <div class="col text-center">
             <h2 class="title-underline"><?= ($_GET['action'] === 'modifierChapitre') ? 'Modifier le chapitre' : 'Création de chapitre' ?></h2>
@@ -14,7 +21,7 @@
             </div>
             
             <div class="form-group">
-                <label class="font-weight-bold " for="create-post">Contenu :</label>
+                <label class="font-weight-bold " for="post-content">Contenu :</label>
                 <textarea class="form-control" id="post" name="post-content" rows="20" ><?= ($_GET['action'] === 'modifierChapitre') ? $post['content'] : '' ?></textarea>
             </div>
             <div class="form-group mt-3 d-flex justify-content-end">

@@ -1,10 +1,12 @@
 <?php 
-require 'controler/ControlerAdmin.php'; 
+require 'controller/AdminController.php'; 
 session_start();
+$adminController = new AdminController;
+
 try {
     if (empty($_GET)) {
-        nbComments();
-        nbPosts();
+        $adminController->nbComments();
+        $adminController->nbPosts();
         require_once 'viewAdmin/viewAdminConnexion.php';
     } 
     
@@ -17,48 +19,74 @@ try {
     }
 
     if (!empty($_POST['username-admin']) && !empty($_POST['password-admin'])) {
-        connexionAdmin(strip_tags($_POST['username-admin']), strip_tags($_POST['password-admin']));
+        $adminController->connexionAdmin();
     }
     
     if (isset($_GET['dashboard']) && empty($_GET['dashboard'])) {
-        nbComments();
-        nbPosts();
+        $adminController->nbComments();
+        $adminController->nbPosts();
         require 'viewAdmin/viewDashboard.php';
-    }
+    } 
 
     if (isset($_GET['dashboard']) && $_GET['dashboard'] === 'deconnexion') {
-        disconnectAdmin();
+        $adminController->disconnectAdmin();
     }
 
     if (isset($_GET['action'])) {
-        
-        if ($_GET['action'] === 'gestionCommentaires' && $_GET['page'] > 0) {
-            managementComments($_GET['page']);
-        } elseif ($_GET['action'] === 'deleteComment' && isset($_GET['id']) && $_GET['id'] > 0) {
-            delComment($_GET['id']);
-        } elseif ($_GET['action'] === 'allowComment' && isset($_GET['id']) && $_GET['id'] > 0) {
-            allowCommentReport($_GET['id']);
-        } 
-        
-        if ($_GET['action'] === 'gestionChapitres') {
-            managementPosts();
-        } elseif ($_GET['action'] === 'listeChapitres' && $_GET['page'] > 0) {
-            listPosts($_GET['page']);
-        } elseif ($_GET['action'] === 'creationChapitre') {
-            require 'viewAdmin/viewCreateUpdatePost.php';
-        } elseif ($_GET['action'] === 'chapitreCreer') {
-            createPost(htmlspecialchars($_POST['title-post']), $_POST['post-content']);
-        } elseif ($_GET['action'] === 'voirChapitre') {
-            if (isset($_GET['chapitre']) && !empty($_GET['chapitre']) && $_GET['chapitre'] > 0) {
-                showPostAdmin($_GET['chapitre']);
-            }
-        } 
-        if ($_GET['action'] === 'supprimerChapitre') {
-            deletePost($_GET['chapitre']);
-        } elseif ($_GET['action'] === 'modifierChapitre') {
-            viewEditPost($_GET['chapitre']);
-        } elseif ($_GET['action'] === 'chapitreModifier') {
-            editPost($_GET['chapitre'], $_POST['title-post'], $_POST['post-content']);
+        $action = $_GET['action'];
+        switch ($action) {
+    
+            case 'gestionCommentaires';
+                $adminController->managementComments();
+            break;
+    
+            case 'deleteComment';
+                $adminController->delComment();
+            break;
+    
+            case 'allowComment';
+                $adminController->allowCommentReport();
+            break;
+    
+            case 'gestionChapitres';
+                $adminController->nbPosts();
+                require 'viewAdmin/viewPostsManager.php';
+            break;
+    
+            case 'listeChapitres';
+                $adminController->listPosts();
+            break;
+    
+            case 'voirChapitre';
+                $adminController->showPost();
+            break;
+    
+            case 'modifierChapitre';
+                $adminController->viewEditPost();
+            break;
+    
+            case 'creationChapitre';
+                require 'viewAdmin/viewCreateUpdatePost.php';
+            break;
+    
+            case 'chapitreCreer';
+                $adminController->createPost();
+            break;
+    
+            case 'modifierChapitre';
+                $adminController->viewEditPost();
+            break;
+    
+            case 'chapitreModifier';
+                $adminController->editPost();
+            break;
+    
+            case 'supprimerChapitre';
+                $adminController->delPost();
+            break;
+    
+            default:
+                throw new Exception('La page n\'existe demandée pas !!!');
         }
     }
 

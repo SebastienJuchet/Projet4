@@ -1,5 +1,5 @@
 <?php 
-require 'controler/MainControler.php';
+require 'controller/MainController.php';
 session_start();
 
 $mainControler = new MainControler;

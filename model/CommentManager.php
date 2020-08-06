@@ -127,15 +127,6 @@ class CommentManager extends ConnexionDb
         return $this->createRequest($request);
     }
 
-    public function deleteTableReport($idComment):PDOStatement 
-    {
-        $request = 'DELETE FROM report_type_comment WHERE id_message_report = :id_message_report';
-        
-        return $this->createRequest($request, [
-            ':id_message_report' => $idComment
-        ]);
-    }
-
     /**
      * @param integer $idComment
      * @return PDOStatement
