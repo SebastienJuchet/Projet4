@@ -14,7 +14,7 @@ try {
         require 'viewAdmin/viewDashboard.php';
     }
 
-    if (isset($_GET['dashboard']) && !isset($_SESSION['admin'])) {
+    if (isset($_GET['action']) || isset($_GET['dashboard']) && !isset($_SESSION['admin'])) {
         throw new Exception('<span class="text-danger">403</span> vous n\'êtes pas autorisé à consulter cette page.');
     }
 
@@ -86,7 +86,7 @@ try {
             break;
     
             default:
-                throw new Exception('La page n\'existe demandée pas !!!');
+                throw new Exception('La page demandée n\'existe pas !!!');
         }
     }
 

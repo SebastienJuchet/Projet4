@@ -122,7 +122,7 @@
 
 <div class="container mb-3 mt-3" id="separate-form">
     <div class="row mt-3">
-        <div class="col-6">
+        <div class="col-10 col-sm-6">
             <form action="index.php?action=addComment&amp;id=<?= $_GET['id'] ?>" method="POST">
                 <?php if(isset($_SESSION['error-comment'])): ?>
                     <div class="bg-danger text-white pt-3 pb-3 pl-3 rounded text-center">

@@ -45,7 +45,7 @@ class AdminController
             header('Location: admin-login?dashboard');
         } else {
             $_SESSION['error-connexion'] = 'L\'email ou le mot de passe n\'est pas correct';
-            header('Location: /P4/admin-login');
+            header('Location: admin-login');
             exit;
         }
     }
@@ -56,7 +56,7 @@ class AdminController
     public function disconnectAdmin() 
     {
         unset($_SESSION['admin']);
-        header('Location: /P4/admin-login');
+        header('Location: admin-login');
         exit;
     }
 
@@ -99,7 +99,8 @@ class AdminController
     /**
      * function to delete comment
      */
-    public function delComment() {
+    public function delComment() 
+    {
         $id = $_GET['id'];
         $this->commentManager->deleteComment($id);
         $this->commentManager->deleteCommentReport($id);

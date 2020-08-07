@@ -66,7 +66,7 @@
                     <ul class="list-inline text-center ">
                         <li class="list-inline-item h5"><a href="#foo" class="text-white" data-toggle="modal" data-target="#staticBackdrop"> À propos</a></li>
                         <li class="list-inline-item">&middot;</li>
-                        <li class="list-inline-item h5"><a href="mentions_legales.html" class="text-white"> Mentions Légales</a></li>
+                        <li class="list-inline-item h5"><a href="mentions_legales.php" class="text-white"> Mentions Légales</a></li>
                         <li class="list-inline-item">&middot;</li>
                         <li class="list-inline-item h5">&#0169 Fait par Sébastien Juchet pour OCR</li>
                     </ul>

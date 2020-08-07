@@ -3,7 +3,7 @@
 <div id="form-connexion">
     <div class="container" id="form-connexion">
         <div class="row d-flex justify-content-center">
-            <div class="col-6">
+            <div class="col-12 col-sm-6">
                 <div class="card text-center">
                     <div class="card-header">
                         <h1>Connexion</h1>
