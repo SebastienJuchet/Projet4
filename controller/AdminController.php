@@ -39,7 +39,7 @@ class AdminController
 
         $connexion = $this->userManager->userConnexion($username)->fetch();
         $error = $this->verifInfoConnexion($pass_admin, $connexion);
-
+        
         if ($error === false) {
             $_SESSION['admin'] = $_POST['username-admin'];
             header('Location: admin-login?dashboard');

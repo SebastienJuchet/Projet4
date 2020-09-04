@@ -27,7 +27,7 @@
                     <ul class="navbar-nav mr-auto">
                         <?php if (isset($_SESSION['admin'])): ?>
                             <li class="nav-item ">
-                                <a class="nav-link" href="admin-login.php">Retour au tableau de bord</a>
+                                <a class="nav-link" href="admin-login?dashboard">Retour au tableau de bord</a>
                             </li>
                         <?php endif ?>
                         <li class="nav-item ">

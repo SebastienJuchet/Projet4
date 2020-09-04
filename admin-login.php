@@ -2,7 +2,6 @@
 require 'controller/AdminController.php'; 
 session_start();
 $adminController = new AdminController;
-
 try {
     if (empty($_GET)) {
         $adminController->nbComments();
@@ -11,14 +10,14 @@ try {
     } 
     
     if (empty($_GET) && isset($_SESSION['admin'])) {
-        require 'viewAdmin/viewDashboard.php';
+        header('Location: admin-login?dashboard');
     }
 
-    if (isset($_GET['action']) || isset($_GET['dashboard']) && !isset($_SESSION['admin'])) {
+    if (isset($_GET['dashboard']) && !isset($_SESSION['admin'])) {
         throw new Exception('<span class="text-danger">403</span> vous n\'êtes pas autorisé à consulter cette page.');
     }
 
-    if (!empty($_POST['username-admin']) && !empty($_POST['password-admin'])) {
+    if (isset($_GET['login']) && !empty($_POST['username-admin']) && !empty($_POST['password-admin'])) {
         $adminController->connexionAdmin();
     }
     

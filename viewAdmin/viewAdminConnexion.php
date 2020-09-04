@@ -14,7 +14,7 @@
                         </div>
                     <?php endif ?>
                     <div class="card-body text-left">
-                        <form action="" method="post">
+                        <form action="admin-login?login" method="post">
                             <div class="form-group">
                                 <label for="username-admin">Identifiant :</label>
                                 <input class="form-control" type="text" name="username-admin" required>
