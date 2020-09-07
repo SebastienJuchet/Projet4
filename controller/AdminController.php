@@ -208,6 +208,7 @@ class AdminController
     {
         $id = (int) $_GET['chapitre'];
         $this->postManager->deletePost($id);
+        $this->commentManager->deleteCommentByPost($_GET['chapitre']);
 
         header('Location: admin-login?action=listeChapitres&page=1');
     }

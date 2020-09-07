@@ -4,7 +4,7 @@ if (document.getElementById('slider')) {
 
 document.addEventListener('DOMContentLoaded', (e) => {
     if (typeof(document.getElementsByTagName('textarea')) !== undefined) {
-        let wysiwyg = new Wysiwyg('#post', ['advlist', 'autolink', 'preview', 'fullscreen', 'emoticons']);  
+        let wysiwyg = new Wysiwyg('#post', ['advlist', 'autolink', 'preview', 'fullscreen']);  
     };
 })
 

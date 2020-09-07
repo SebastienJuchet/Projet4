@@ -63,6 +63,21 @@ class CommentManager extends ConnexionDb
     }
 
     /**
+     * function to prevent orphan comments
+     * 
+     * @param integer $id_post
+     * @return PDOStatement
+     */
+    public function deleteCommentByPost(int $id_post): PDOStatement
+    {   
+        $request = 'DELETE FROM comments WHERE id_post = :id_post';
+
+        return $this->createRequest($request, [
+            ':id_post' => $id_post
+        ]);
+    }
+
+    /**
      * @param integer $idComment
      * @return PDOStatement
      */

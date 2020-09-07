@@ -48,6 +48,7 @@ abstract class ConnexionDb
         }
         
     }
+    
     /**
      * @param string $sql
      * @param array|null $params
